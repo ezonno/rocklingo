@@ -5,15 +5,17 @@ import MainMenu from './components/MainMenu';
 import SessionView from './components/SessionView';
 import ProgressView from './components/ProgressView';
 import SettingsView from './components/SettingsView';
+import { ThemeProvider } from './components/ThemeProvider';
+import { StorageService } from './services/storage';
 import { User } from './types';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
+    const savedUser = StorageService.getUser();
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
+      setUser(savedUser);
     }
   }, []);
 
@@ -25,36 +27,38 @@ function App() {
       totalPoints: 0,
     };
     setUser(newUser);
-    localStorage.setItem('user', JSON.stringify(newUser));
+    StorageService.setUser(newUser);
   };
 
   return (
-    <Router basename="/rocklingo">
-      <div className="min-h-screen bg-gray-50">
-        <Routes>
-          <Route 
-            path="/" 
-            element={user ? <Navigate to="/menu" /> : <WelcomeScreen onUserCreate={handleUserCreate} />} 
-          />
-          <Route 
-            path="/menu" 
-            element={user ? <MainMenu user={user} /> : <Navigate to="/" />} 
-          />
-          <Route 
-            path="/session" 
-            element={user ? <SessionView user={user} /> : <Navigate to="/" />} 
-          />
-          <Route 
-            path="/progress" 
-            element={user ? <ProgressView user={user} /> : <Navigate to="/" />} 
-          />
-          <Route 
-            path="/settings" 
-            element={user ? <SettingsView /> : <Navigate to="/" />} 
-          />
-        </Routes>
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router basename="/rocklingo">
+        <div className="min-h-screen transition-all duration-300">
+          <Routes>
+            <Route 
+              path="/" 
+              element={user ? <Navigate to="/menu" /> : <WelcomeScreen onUserCreate={handleUserCreate} />} 
+            />
+            <Route 
+              path="/menu" 
+              element={user ? <MainMenu user={user} /> : <Navigate to="/" />} 
+            />
+            <Route 
+              path="/session" 
+              element={user ? <SessionView user={user} /> : <Navigate to="/" />} 
+            />
+            <Route 
+              path="/progress" 
+              element={user ? <ProgressView user={user} /> : <Navigate to="/" />} 
+            />
+            <Route 
+              path="/settings" 
+              element={user ? <SettingsView /> : <Navigate to="/" />} 
+            />
+          </Routes>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
