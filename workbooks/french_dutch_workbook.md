@@ -4,37 +4,17 @@
 
 ### Frans ↔ Nederlands
 
-**Adjectives:**
-- mogelijk → belangrijk
-- vroeg → stom
-- duur → volgers
-- waar het verband → naar het station
-- mogelijk → naar het stad
-
 **Verbs:**
 - venir → komen
 - pensé → de oplossing
 - améliorer → jamais
 - la solution → gewaarlijk
 
-**Time expressions:**
-- Oman wijl naar de bioscoop? → Gaan wij naar de bioscoop?
-- la soir → de zee
-- het laatst → Om drie uur
+
 
 ## Page 2 - Daily Activities and Sports
 
 ### Frans ↔ Nederlands
-
-**Daily activities:**
-- de keer → tijdens
-- de dag → gauw
-- de week → nog
-- de maand → sinds
-
-**Sports and activities:**
-- speciaal jij een muziekinstrument? → Speel jij een muziekinstrument?
-- ik speel gitaar → Ik speel gitaar
 
 **Time and frequency:**
 - la fois → de maal
@@ -42,16 +22,7 @@
 - la semaine → de week
 - le mois → de maand
 
-**Sports vocabulary:**
-- drummen → zwemmen
-- gitaar spelen → basketballen
-- piano spelen → tennissen
-- fluit spelen → voetballen
 
-**Question patterns:**
-- de muziek → jij kunt
-- jij kunst → kiezen
-- beginnen → beginnen
 
 ## Page 3 - Places and Navigation
 
@@ -105,9 +76,6 @@
 
 ### Frans ↔ Nederlands
 
-**Complex activities:**
-- wij moeten → hij is vertrokken
-- ik wil → het was
 
 **Visiting and travel:**
 - retrouver → terugvinden
@@ -115,20 +83,7 @@
 - faire du foot → voetballen
 - jouer à la console → gamen
 
-**People and relationships:**
-- bijna → minstens net
-- minstens net → helemaal niet
-- helemaal niet → tereden, blij
 
-**Feelings and states:**
-- ik ken → mountainbiken
-- mountainbiken → bergbeklimmen
-- bergbeklimmen → zwemmen
-
-**Complex questions:**
-- Ik ken → mountainbiken
-- mountainbiken → bergbeklimmen
-- vergelijken → zwemmen
 
 ## Page 5 - Directions and Transportation
 
