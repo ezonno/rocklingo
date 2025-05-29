@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 import { ThemeProvider, useTheme, colors, getFrenchIcon, getColorFromTheme } from '../ThemeProvider';
 
 // Test component that uses the theme
@@ -51,7 +52,7 @@ describe('ThemeProvider', () => {
   });
 
   test('throws error when useTheme is used outside provider', () => {
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     
     expect(() => {
       render(<TestComponent />);

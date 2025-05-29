@@ -1,17 +1,18 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 import { DataExport } from '../DataExport';
 import { ThemeProvider } from '../ThemeProvider';
 import { StorageService } from '../../services/storage';
 import { SessionManager } from '../../services/sessionManager';
 
 // Mock the services
-jest.mock('../../services/storage');
-jest.mock('../../services/sessionManager');
+vi.mock('../../services/storage');
+vi.mock('../../services/sessionManager');
 
-const mockStorageService = StorageService as jest.Mocked<typeof StorageService>;
-const mockSessionManager = SessionManager as jest.Mocked<typeof SessionManager>;
+const mockStorageService = StorageService as any;
+const mockSessionManager = SessionManager as any;
 
 const renderWithTheme = (component: React.ReactElement) => {
   return render(
@@ -22,13 +23,13 @@ const renderWithTheme = (component: React.ReactElement) => {
 };
 
 // Mock URL methods
-global.URL.createObjectURL = jest.fn(() => 'mock-blob-url');
-global.URL.revokeObjectURL = jest.fn();
+global.URL.createObjectURL = vi.fn(() => 'mock-blob-url');
+global.URL.revokeObjectURL = vi.fn();
 
 describe('DataExport', () => {
   beforeEach(() => {
     // Reset mocks
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     
     // Setup default mock return values
     mockStorageService.getUser.mockReturnValue({
@@ -139,21 +140,21 @@ describe('DataExport', () => {
   });
 
   test('handles JSON export correctly', async () => {
-    const mockOnComplete = jest.fn();
+    const mockOnComplete = vi.fn();
     renderWithTheme(<DataExport onExportComplete={mockOnComplete} />);
     
     // Mock document methods
     const mockLink = {
       href: '',
       download: '',
-      click: jest.fn()
+      click: vi.fn()
     };
-    const mockAppendChild = jest.fn();
-    const mockRemoveChild = jest.fn();
+    const mockAppendChild = vi.fn();
+    const mockRemoveChild = vi.fn();
     
-    jest.spyOn(document, 'createElement').mockReturnValue(mockLink as any);
-    jest.spyOn(document.body, 'appendChild').mockImplementation(mockAppendChild);
-    jest.spyOn(document.body, 'removeChild').mockImplementation(mockRemoveChild);
+    vi.spyOn(document, 'createElement').mockReturnValue(mockLink as any);
+    vi.spyOn(document.body, 'appendChild').mockImplementation(mockAppendChild);
+    vi.spyOn(document.body, 'removeChild').mockImplementation(mockRemoveChild);
     
     const exportButton = screen.getByRole('button', { name: /Exporteer als JSON/i });
     fireEvent.click(exportButton);
@@ -168,7 +169,7 @@ describe('DataExport', () => {
   });
 
   test('handles CSV export correctly', async () => {
-    const mockOnComplete = jest.fn();
+    const mockOnComplete = vi.fn();
     renderWithTheme(<DataExport onExportComplete={mockOnComplete} />);
     
     // Switch to CSV format
@@ -179,11 +180,11 @@ describe('DataExport', () => {
     const mockLink = {
       href: '',
       download: '',
-      click: jest.fn()
+      click: vi.fn()
     };
-    jest.spyOn(document, 'createElement').mockReturnValue(mockLink as any);
-    jest.spyOn(document.body, 'appendChild').mockImplementation(jest.fn());
-    jest.spyOn(document.body, 'removeChild').mockImplementation(jest.fn());
+    vi.spyOn(document, 'createElement').mockReturnValue(mockLink as any);
+    vi.spyOn(document.body, 'appendChild').mockImplementation(vi.fn());
+    vi.spyOn(document.body, 'removeChild').mockImplementation(vi.fn());
     
     const exportButton = screen.getByRole('button', { name: /Exporteer als CSV/i });
     fireEvent.click(exportButton);
@@ -201,7 +202,7 @@ describe('DataExport', () => {
     const exportButton = screen.getByRole('button', { name: /Exporteer als JSON/i });
     
     // Mock a delayed response
-    jest.spyOn(document, 'createElement').mockImplementation(() => {
+    vi.spyOn(document, 'createElement').mockImplementation(() => {
       return {
         href: '',
         download: '',
@@ -224,11 +225,11 @@ describe('DataExport', () => {
     const mockLink = {
       href: '',
       download: '',
-      click: jest.fn()
+      click: vi.fn()
     };
-    jest.spyOn(document, 'createElement').mockReturnValue(mockLink as any);
-    jest.spyOn(document.body, 'appendChild').mockImplementation(jest.fn());
-    jest.spyOn(document.body, 'removeChild').mockImplementation(jest.fn());
+    vi.spyOn(document, 'createElement').mockReturnValue(mockLink as any);
+    vi.spyOn(document.body, 'appendChild').mockImplementation(vi.fn());
+    vi.spyOn(document.body, 'removeChild').mockImplementation(vi.fn());
     
     const exportButton = screen.getByRole('button', { name: /Exporteer als JSON/i });
     fireEvent.click(exportButton);
@@ -239,11 +240,11 @@ describe('DataExport', () => {
   });
 
   test('handles export errors gracefully', async () => {
-    const mockOnComplete = jest.fn();
+    const mockOnComplete = vi.fn();
     renderWithTheme(<DataExport onExportComplete={mockOnComplete} />);
     
     // Mock an error during export
-    jest.spyOn(document, 'createElement').mockImplementation(() => {
+    vi.spyOn(document, 'createElement').mockImplementation(() => {
       throw new Error('Mock export error');
     });
     

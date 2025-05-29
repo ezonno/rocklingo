@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 import { 
   ConfettiCelebration,
   AchievementConfetti,
@@ -20,16 +21,19 @@ const renderWithTheme = (component: React.ReactElement) => {
 };
 
 // Mock requestAnimationFrame and cancelAnimationFrame
-global.requestAnimationFrame = jest.fn((cb) => setTimeout(cb, 16));
-global.cancelAnimationFrame = jest.fn((id) => clearTimeout(id));
+global.requestAnimationFrame = vi.fn((cb) => {
+  setTimeout(cb, 16);
+  return 1;
+}) as any;
+global.cancelAnimationFrame = vi.fn((id) => clearTimeout(id));
 
 describe('ConfettiCelebration', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test('renders when isActive is true', () => {
@@ -77,7 +81,7 @@ describe('ConfettiCelebration', () => {
   });
 
   test('calls onComplete callback after duration', async () => {
-    const onCompleteMock = jest.fn();
+    const onCompleteMock = vi.fn();
     
     renderWithTheme(
       <ConfettiCelebration 
@@ -90,7 +94,7 @@ describe('ConfettiCelebration', () => {
     
     // Fast-forward time past duration
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     
     await waitFor(() => {
@@ -185,7 +189,7 @@ describe('Predefined Confetti Variants', () => {
   });
 
   test('PerfectScoreConfetti has longer duration', () => {
-    const onCompleteMock = jest.fn();
+    const onCompleteMock = vi.fn();
     
     renderWithTheme(
       <PerfectScoreConfetti 
@@ -197,13 +201,13 @@ describe('Predefined Confetti Variants', () => {
     
     // Should take 4000ms to complete (longer than default)
     act(() => {
-      jest.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(3000);
     });
     
     expect(onCompleteMock).not.toHaveBeenCalled();
     
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     
     expect(onCompleteMock).toHaveBeenCalledTimes(1);
@@ -279,7 +283,7 @@ describe('useConfetti Hook', () => {
     
     // Wait for auto-completion
     act(() => {
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
     });
     
     await waitFor(() => {

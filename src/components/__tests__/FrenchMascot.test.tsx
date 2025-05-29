@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 import { 
   FrenchMascot, 
   WelcomeMascot, 
@@ -88,7 +89,7 @@ describe('FrenchMascot', () => {
   });
 
   test('handles click events', () => {
-    const onClickMock = jest.fn();
+    const onClickMock = vi.fn();
     renderWithTheme(
       <FrenchMascot onClick={onClickMock} showMessage={false} />
     );
@@ -100,7 +101,7 @@ describe('FrenchMascot', () => {
   });
 
   test('keyboard navigation works when clickable', () => {
-    const onClickMock = jest.fn();
+    const onClickMock = vi.fn();
     renderWithTheme(
       <FrenchMascot onClick={onClickMock} showMessage={false} />
     );

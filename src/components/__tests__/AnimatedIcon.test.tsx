@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 import { AnimatedIcon, CelebrationIcon, WelcomeIcon, FrenchIconGallery } from '../AnimatedIcon';
 import { ThemeProvider } from '../ThemeProvider';
 
@@ -50,7 +51,7 @@ describe('AnimatedIcon', () => {
   });
 
   test('handles click trigger correctly', () => {
-    const onClickMock = jest.fn();
+    const onClickMock = vi.fn();
     renderWithTheme(
       <AnimatedIcon trigger="click" onClick={onClickMock} />
     );
@@ -73,7 +74,7 @@ describe('AnimatedIcon', () => {
   });
 
   test('handles keyboard navigation when clickable', () => {
-    const onClickMock = jest.fn();
+    const onClickMock = vi.fn();
     renderWithTheme(
       <AnimatedIcon onClick={onClickMock} />
     );
@@ -137,7 +138,7 @@ describe('FrenchIconGallery', () => {
   });
 
   test('calls onIconSelect when icon is clicked', () => {
-    const onSelectMock = jest.fn();
+    const onSelectMock = vi.fn();
     renderWithTheme(<FrenchIconGallery onIconSelect={onSelectMock} />);
     
     const eiffelTowerContainer = screen.getByText('Eiffel Tower').closest('div');
