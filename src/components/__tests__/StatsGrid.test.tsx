@@ -43,7 +43,7 @@ describe('StatsGrid', () => {
     expect(screen.getByText('200')).toBeInTheDocument();
     expect(screen.getByText('Beste Score')).toBeInTheDocument();
     
-    // Total time: 900 + 1200 = 2100 seconds = 35 minutes
+    // Total time: (900 + 1200) seconds / 60 = 35 minutes
     expect(screen.getByText('35m')).toBeInTheDocument();
     expect(screen.getByText('Tijd Geoefend')).toBeInTheDocument();
     

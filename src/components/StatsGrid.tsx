@@ -17,7 +17,8 @@ export const StatsGrid: React.FC<StatsGridProps> = ({
   const bestScore = totalSessions > 0 ? Math.max(...sessions.map(s => s.score)) : 0;
   
   // Calculate total time practiced (in minutes)
-  const totalTimePracticed = sessions.reduce((sum, session) => sum + session.duration, 0);
+  // Note: session.duration is in seconds, so convert to minutes
+  const totalTimePracticed = sessions.reduce((sum, session) => sum + Math.round(session.duration / 60), 0);
   const totalHours = Math.floor(totalTimePracticed / 60);
   const totalMinutes = totalTimePracticed % 60;
   

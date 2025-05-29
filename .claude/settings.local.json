@@ -19,7 +19,10 @@
       "Bash(gh run list:*)",
       "Bash(gh run rerun:*)",
       "Bash(npx tsc:*)",
-      "Bash(git fetch:*)"
+      "Bash(git fetch:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh pr view:*)",
+      "WebFetch(domain:github.com)"
     ]
   },
   "enableAllProjectMcpServers": false
