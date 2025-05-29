@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useTheme, frenchElements } from './ThemeProvider';
 
 interface ConfettiParticle {
   id: number;
@@ -67,11 +66,10 @@ export const ConfettiCelebration: React.FC<ConfettiCelebrationProps> = ({
   showMessage = true,
   customMessage
 }) => {
-  const { theme } = useTheme();
   const [particles, setParticles] = useState<ConfettiParticle[]>([]);
   const [message, setMessage] = useState<string>('');
   const [showCelebration, setShowCelebration] = useState(false);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const startTimeRef = useRef<number>(0);
 
@@ -95,7 +93,6 @@ export const ConfettiCelebration: React.FC<ConfettiCelebrationProps> = ({
   const createParticle = (id: number): ConfettiParticle => {
     const isEmoji = Math.random() < 0.3; // 30% chance for emoji
     const containerWidth = containerRef.current?.offsetWidth || window.innerWidth;
-    const containerHeight = containerRef.current?.offsetHeight || window.innerHeight;
 
     return {
       id,
@@ -175,7 +172,7 @@ export const ConfettiCelebration: React.FC<ConfettiCelebrationProps> = ({
       style={{ zIndex: 9999 }}
     >
       {/* CSS for animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes messageGlow {
           0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
           50% { text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6); }
@@ -286,7 +283,7 @@ export const PerfectScoreConfetti: React.FC<Omit<ConfettiCelebrationProps, 'trig
 export const useConfetti = () => {
   const [isActive, setIsActive] = useState(false);
 
-  const triggerConfetti = (type: ConfettiCelebrationProps['trigger'] = 'achievement') => {
+  const triggerConfetti = (_type: ConfettiCelebrationProps['trigger'] = 'achievement') => {
     setIsActive(true);
   };
 

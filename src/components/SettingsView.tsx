@@ -23,7 +23,6 @@ function SettingsView() {
   });
   const [activeTab, setActiveTab] = useState<'general' | 'data' | 'appearance'>('general');
   const [showConfetti, setShowConfetti] = useState(false);
-  const [showDataSection, setShowDataSection] = useState(false);
 
   useEffect(() => {
     const savedSettings = StorageService.getSettings();
@@ -41,12 +40,12 @@ function SettingsView() {
 
   const handleReset = () => {
     if (confirm('Weet je zeker dat je al je voortgang wilt resetten? Deze actie kan niet ongedaan worden gemaakt.')) {
-      StorageService.clearAllData();
+      StorageService.clearAll();
       window.location.href = '/rocklingo/';
     }
   };
 
-  const handleExportComplete = (success: boolean, filename?: string) => {
+  const handleExportComplete = (success: boolean, _filename?: string) => {
     if (success) {
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 3000);
@@ -131,7 +130,6 @@ function SettingsView() {
                     value={settings.sessionDuration}
                     onChange={(e) => setSettings({ ...settings, sessionDuration: Number(e.target.value) })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition-all"
-                    style={{ focusRingColor: theme.colors.primary }}
                   >
                     <option value={5}>5 minuten</option>
                     <option value={10}>10 minuten</option>
@@ -150,7 +148,6 @@ function SettingsView() {
                     value={settings.difficulty}
                     onChange={(e) => setSettings({ ...settings, difficulty: e.target.value as 'easy' | 'medium' | 'hard' })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition-all"
-                    style={{ focusRingColor: theme.colors.primary }}
                   >
                     <option value="easy">🟢 Makkelijk (Débutant)</option>
                     <option value="medium">🟡 Gemiddeld (Intermédiaire)</option>
