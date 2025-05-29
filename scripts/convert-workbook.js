@@ -5,7 +5,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const WORKBOOK_PATH = path.join(__dirname, '../workbooks/french_dutch_workbook.md');
+// Get workbook path from command line argument or use default
+const args = process.argv.slice(2);
+const workbookFile = args.find(arg => !arg.startsWith('--')) || 'french_dutch_workbook.md';
+const WORKBOOK_PATH = path.join(__dirname, '../workbooks/', workbookFile);
 const OUTPUT_PATH = path.join(__dirname, '../public/data/questions.json');
 
 // Import WorkbookParser from compiled TypeScript
@@ -40,7 +43,7 @@ async function convertWorkbook(options = {}) {
     const output = {
       ...questionBank,
       generatedAt: new Date().toISOString(),
-      sourceFile: 'french_dutch_workbook.md',
+      sourceFile: path.basename(WORKBOOK_PATH),
       stats: {
         totalQuestions: questionBank.categories.reduce((sum, cat) => sum + cat.questions.length, 0),
         totalCategories: questionBank.categories.length,
@@ -124,7 +127,6 @@ async function watchWorkbook() {
 }
 
 // CLI handling
-const args = process.argv.slice(2);
 const options = {
   validate: args.includes('--validate'),
   watch: args.includes('--watch')
