@@ -1,27 +1,30 @@
 import { Question, QuestionBank, Category } from '../types';
 import { StorageService } from './storage';
-import { WorkbookParser } from './workbookParser';
 
 export class QuestionBankService {
-  private static workbookQuestionsPromise: Promise<QuestionBank> | null = null;
+  private static questionsPromise: Promise<QuestionBank> | null = null;
 
-  static async loadWorkbookQuestions(): Promise<QuestionBank> {
-    if (this.workbookQuestionsPromise) {
-      return this.workbookQuestionsPromise;
+  static async loadQuestions(): Promise<QuestionBank> {
+    if (this.questionsPromise) {
+      return this.questionsPromise;
     }
 
-    this.workbookQuestionsPromise = fetch('/rocklingo/french_dutch_workbook.md')
-      .then(response => response.text())
-      .then(content => WorkbookParser.parseWorkbook(content))
+    this.questionsPromise = fetch('/rocklingo/data/questions.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to load questions');
+        }
+        return response.json();
+      })
       .catch(async error => {
-        console.error('Failed to load workbook, falling back to default questions:', error);
+        console.error('Failed to load questions, falling back to default questions:', error);
         // Fallback to default questions
         return fetch('/rocklingo/data/default-questions.json')
           .then(response => response.json())
           .catch(() => ({ version: '1.0', categories: [] }));
       });
 
-    return this.workbookQuestionsPromise;
+    return this.questionsPromise;
   }
 
   static async getAllQuestions(): Promise<QuestionBank> {
@@ -29,7 +32,7 @@ export class QuestionBankService {
     if (customQuestions && customQuestions.categories.length > 0) {
       return customQuestions;
     }
-    return this.loadWorkbookQuestions();
+    return this.loadQuestions();
   }
 
   static async getQuestionsByCategory(categoryId: string): Promise<Question[]> {
