@@ -22,7 +22,14 @@
       "Bash(git fetch:*)",
       "Bash(gh pr checks:*)",
       "Bash(gh pr view:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(gh pr create:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(gh workflow run:*)",
+      "Bash(gh pr close:*)",
+      "Bash(gh pr reopen:*)",
+      "Bash(git merge:*)"
     ]
   },
   "enableAllProjectMcpServers": false

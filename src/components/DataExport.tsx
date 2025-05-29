@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StorageService } from '../services/storage';
 import { SessionManager } from '../services/sessionManager';
-import { useTheme } from './ThemeProvider';
 
 interface ExportData {
   exportDate: string;
@@ -32,7 +31,6 @@ export const DataExport: React.FC<DataExportProps> = ({
   onExportComplete,
   className = '' 
 }) => {
-  const { theme } = useTheme();
   const [isExporting, setIsExporting] = useState(false);
   const [exportStatus, setExportStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [exportFormat, setExportFormat] = useState<'json' | 'csv'>('json');
@@ -89,8 +87,8 @@ export const DataExport: React.FC<DataExportProps> = ({
     return csv;
   };
 
-  const downloadFile = (content: string, filename: string, contentType: string) => {
-    const blob = new Blob([content], { type: contentType });
+  const downloadFile = (content: string, filename: string, type: string) => {
+    const blob = new Blob([content], { type: type });
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;

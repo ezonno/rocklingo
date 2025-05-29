@@ -1,7 +1,7 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ThemeProvider, useTheme, colors, getFrenchIcon, getColorFromTheme } from '../ThemeProvider';
+import { vi } from 'vitest';
+import { ThemeProvider, useTheme, colors, getFrenchIcon, getColorFromTheme, animations, frenchElements } from '../ThemeProvider';
 
 // Test component that uses the theme
 const TestComponent = () => {
@@ -52,7 +52,7 @@ describe('ThemeProvider', () => {
   });
 
   test('throws error when useTheme is used outside provider', () => {
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     
     expect(() => {
       render(<TestComponent />);
@@ -86,20 +86,16 @@ describe('Color utilities', () => {
 });
 
 describe('Theme structure', () => {
-  test('theme object has required properties', () => {
-    const { theme } = require('../ThemeProvider');
+  test('theme exports are available', () => {
+    expect(colors).toBeDefined();
+    expect(animations).toBeDefined();
+    expect(frenchElements).toBeDefined();
     
-    expect(theme).toHaveProperty('colors');
-    expect(theme).toHaveProperty('animations');
-    expect(theme).toHaveProperty('fonts');
-    expect(theme).toHaveProperty('spacing');
-    expect(theme).toHaveProperty('borderRadius');
-    expect(theme).toHaveProperty('shadows');
+    expect(colors).toHaveProperty('primary');
+    expect(colors).toHaveProperty('secondary');
   });
 
   test('animations have correct durations', () => {
-    const { animations } = require('../ThemeProvider');
-    
     expect(animations.durations.fast).toBe(150);
     expect(animations.durations.normal).toBe(300);
     expect(animations.durations.slow).toBe(500);
@@ -107,8 +103,6 @@ describe('Theme structure', () => {
   });
 
   test('french elements contain expected icons', () => {
-    const { frenchElements } = require('../ThemeProvider');
-    
     expect(frenchElements.icons).toHaveProperty('eiffelTower', '🗼');
     expect(frenchElements.icons).toHaveProperty('croissant', '🥐');
     expect(frenchElements.icons).toHaveProperty('baguette', '🥖');

@@ -82,7 +82,6 @@ export const FrenchMascot: React.FC<FrenchMascotProps> = ({
 }) => {
   const { theme, frenchElements } = useTheme();
   const [currentMessage, setCurrentMessage] = useState<string>('');
-  const [isVisible, setIsVisible] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
 
   // Auto-generate messages based on mood
@@ -120,7 +119,7 @@ export const FrenchMascot: React.FC<FrenchMascotProps> = ({
   return (
     <div className={`relative inline-block ${className}`}>
       {/* CSS Animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes mascotBounce {
           0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
           40% { transform: translateY(-10px); }

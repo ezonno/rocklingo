@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { StorageService } from '../services/storage';
-import { useTheme } from './ThemeProvider';
 
 interface ImportData {
   exportDate: string;
@@ -45,7 +44,6 @@ export const DataImport: React.FC<DataImportProps> = ({
   onImportComplete,
   className = '' 
 }) => {
-  const { theme } = useTheme();
   const [isImporting, setIsImporting] = useState(false);
   const [importStatus, setImportStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [validationResult, setValidationResult] = useState<ImportValidationResult | null>(null);
@@ -202,7 +200,8 @@ export const DataImport: React.FC<DataImportProps> = ({
         }
       });
       
-      StorageService.setQuestionProgress(mergedProgress);
+      // Store the merged progress back to localStorage
+      localStorage.setItem('question_detailed_progress', JSON.stringify(mergedProgress));
     }
 
     return summary;
