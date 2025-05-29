@@ -1,0 +1,82 @@
+{
+  "version": "1.0",
+  "categories": [
+    {
+      "id": "animals",
+      "name": "Dieren",
+      "icon": "🐾",
+      "questions": [
+        {"id": "a1", "dutch": "hond", "french": "chien", "gender": "m", "category": "animals", "difficulty": 1},
+        {"id": "a2", "dutch": "kat", "french": "chat", "gender": "m", "category": "animals", "difficulty": 1},
+        {"id": "a3", "dutch": "vogel", "french": "oiseau", "gender": "m", "category": "animals", "difficulty": 1},
+        {"id": "a4", "dutch": "vis", "french": "poisson", "gender": "m", "category": "animals", "difficulty": 1},
+        {"id": "a5", "dutch": "paard", "french": "cheval", "gender": "m", "category": "animals", "difficulty": 2},
+        {"id": "a6", "dutch": "koe", "french": "vache", "gender": "f", "category": "animals", "difficulty": 1},
+        {"id": "a7", "dutch": "muis", "french": "souris", "gender": "f", "category": "animals", "difficulty": 2},
+        {"id": "a8", "dutch": "konijn", "french": "lapin", "gender": "m", "category": "animals", "difficulty": 2}
+      ]
+    },
+    {
+      "id": "colors",
+      "name": "Kleuren",
+      "icon": "🎨",
+      "questions": [
+        {"id": "c1", "dutch": "rood", "french": "rouge", "category": "colors", "difficulty": 1},
+        {"id": "c2", "dutch": "blauw", "french": "bleu", "category": "colors", "difficulty": 1},
+        {"id": "c3", "dutch": "groen", "french": "vert", "category": "colors", "difficulty": 1},
+        {"id": "c4", "dutch": "geel", "french": "jaune", "category": "colors", "difficulty": 1},
+        {"id": "c5", "dutch": "zwart", "french": "noir", "category": "colors", "difficulty": 1},
+        {"id": "c6", "dutch": "wit", "french": "blanc", "category": "colors", "difficulty": 1},
+        {"id": "c7", "dutch": "oranje", "french": "orange", "category": "colors", "difficulty": 1},
+        {"id": "c8", "dutch": "paars", "french": "violet", "category": "colors", "difficulty": 2}
+      ]
+    },
+    {
+      "id": "family",
+      "name": "Familie",
+      "icon": "👨‍👩‍👧‍👦",
+      "questions": [
+        {"id": "f1", "dutch": "moeder", "french": "mère", "gender": "f", "category": "family", "difficulty": 1},
+        {"id": "f2", "dutch": "vader", "french": "père", "gender": "m", "category": "family", "difficulty": 1},
+        {"id": "f3", "dutch": "broer", "french": "frère", "gender": "m", "category": "family", "difficulty": 1},
+        {"id": "f4", "dutch": "zus", "french": "sœur", "gender": "f", "category": "family", "difficulty": 1},
+        {"id": "f5", "dutch": "oma", "french": "grand-mère", "gender": "f", "category": "family", "difficulty": 2},
+        {"id": "f6", "dutch": "opa", "french": "grand-père", "gender": "m", "category": "family", "difficulty": 2},
+        {"id": "f7", "dutch": "tante", "french": "tante", "gender": "f", "category": "family", "difficulty": 2},
+        {"id": "f8", "dutch": "oom", "french": "oncle", "gender": "m", "category": "family", "difficulty": 2}
+      ]
+    },
+    {
+      "id": "numbers",
+      "name": "Getallen",
+      "icon": "🔢",
+      "questions": [
+        {"id": "n1", "dutch": "een", "french": "un", "category": "numbers", "difficulty": 1},
+        {"id": "n2", "dutch": "twee", "french": "deux", "category": "numbers", "difficulty": 1},
+        {"id": "n3", "dutch": "drie", "french": "trois", "category": "numbers", "difficulty": 1},
+        {"id": "n4", "dutch": "vier", "french": "quatre", "category": "numbers", "difficulty": 1},
+        {"id": "n5", "dutch": "vijf", "french": "cinq", "category": "numbers", "difficulty": 1},
+        {"id": "n6", "dutch": "zes", "french": "six", "category": "numbers", "difficulty": 1},
+        {"id": "n7", "dutch": "zeven", "french": "sept", "category": "numbers", "difficulty": 1},
+        {"id": "n8", "dutch": "acht", "french": "huit", "category": "numbers", "difficulty": 1},
+        {"id": "n9", "dutch": "negen", "french": "neuf", "category": "numbers", "difficulty": 1},
+        {"id": "n10", "dutch": "tien", "french": "dix", "category": "numbers", "difficulty": 1}
+      ]
+    },
+    {
+      "id": "school",
+      "name": "School",
+      "icon": "🎒",
+      "questions": [
+        {"id": "s1", "dutch": "boek", "french": "livre", "gender": "m", "category": "school", "difficulty": 1},
+        {"id": "s2", "dutch": "pen", "french": "stylo", "gender": "m", "category": "school", "difficulty": 1},
+        {"id": "s3", "dutch": "potlood", "french": "crayon", "gender": "m", "category": "school", "difficulty": 1},
+        {"id": "s4", "dutch": "tas", "french": "sac", "gender": "m", "category": "school", "difficulty": 1},
+        {"id": "s5", "dutch": "leraar", "french": "professeur", "gender": "m", "category": "school", "difficulty": 2},
+        {"id": "s6", "dutch": "klas", "french": "classe", "gender": "f", "category": "school", "difficulty": 1},
+        {"id": "s7", "dutch": "tafel", "french": "table", "gender": "f", "category": "school", "difficulty": 1},
+        {"id": "s8", "dutch": "stoel", "french": "chaise", "gender": "f", "category": "school", "difficulty": 1}
+      ]
+    }
+  ]
+}
