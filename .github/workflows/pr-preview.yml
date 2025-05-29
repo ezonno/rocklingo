@@ -1,0 +1,54 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  preview:
+    name: Build Preview
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test -- --run
+    
+    - name: Build project
+      run: npm run build
+    
+    - name: Upload preview artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: pr-preview-${{ github.event.pull_request.number }}
+        path: dist/
+        retention-days: 7
+    
+    - name: Comment PR with status
+      uses: actions/github-script@v6
+      if: always()
+      with:
+        script: |
+          const status = '${{ job.status }}';
+          const prNumber = context.issue.number;
+          const emoji = status === 'success' ? '✅' : '❌';
+          const message = status === 'success' 
+            ? 'Build and tests passed! Preview artifacts are available.'
+            : 'Build or tests failed. Please check the logs.';
+          
+          github.rest.issues.createComment({
+            issue_number: prNumber,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `${emoji} **PR Preview Status**: ${message}\n\nRun ID: ${{ github.run_id }}`
+          })
