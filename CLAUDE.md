@@ -1,2 +1,8 @@
 - Implementation should be backed by unit tests
 - french_dutch_workbook.md should be the source of the questions
+- Development should happen in branches
+- Pull request should be created to merge work into the main branch
+- specs should go into the spec folder
+- when asking to create a spec, do not implement it yet
+- always run test to verify your work
+- always lint your work
