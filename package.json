@@ -5,14 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && tsc -p tsconfig.build.json && npm run workbook:convert && vite build",
     "lint": "tsc --noEmit",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "workbook:convert": "node scripts/convert-workbook.js",
+    "workbook:validate": "node scripts/convert-workbook.js --validate",
+    "workbook:watch": "node scripts/convert-workbook.js --watch"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -29,6 +32,7 @@
     "@types/react-dom": "^19.1.5",
     "@vitejs/plugin-react": "^4.5.0",
     "autoprefixer": "^10.4.21",
+    "chokidar": "^4.0.3",
     "gh-pages": "^6.3.0",
     "jsdom": "^26.1.0",
     "postcss": "^8.5.4",

@@ -26,6 +26,9 @@ jobs:
     - name: Run TypeScript checks
       run: npm run lint
     
+    - name: Validate workbook format
+      run: npm run workbook:validate
+    
     - name: Audit dependencies
       run: npm audit --audit-level=high
       continue-on-error: true
