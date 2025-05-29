@@ -66,6 +66,11 @@ export class StorageService {
     return data ? JSON.parse(data) : {};
   }
 
+  static getQuestionProgress(): Record<string, { correct: number; total: number; category?: string }> {
+    const data = localStorage.getItem('question_detailed_progress');
+    return data ? JSON.parse(data) : {};
+  }
+
   static updateProgress(questionId: string, correct: boolean): void {
     const progress = this.getProgress();
     const current = progress[questionId] || { mastered: false, attempts: 0, lastSeen: 0 };
@@ -77,6 +82,22 @@ export class StorageService {
     };
 
     localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(progress));
+    
+    // Also update detailed progress for Phase 4 analytics
+    this.updateQuestionProgress(questionId, correct);
+  }
+
+  static updateQuestionProgress(questionId: string, correct: boolean, category?: string): void {
+    const detailedProgress = this.getQuestionProgress();
+    const current = detailedProgress[questionId] || { correct: 0, total: 0, category };
+    
+    detailedProgress[questionId] = {
+      correct: current.correct + (correct ? 1 : 0),
+      total: current.total + 1,
+      category: category || current.category
+    };
+
+    localStorage.setItem('question_detailed_progress', JSON.stringify(detailedProgress));
   }
 
   static clearAll(): void {
