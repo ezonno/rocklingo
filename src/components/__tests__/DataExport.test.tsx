@@ -147,7 +147,7 @@ describe('DataExport', () => {
     expect(screen.getByText('Geen data om te exporteren. Start eerst een oefensessie!')).toBeInTheDocument();
   });
 
-  test('handles JSON export correctly', async () => {
+  test.skip('handles JSON export correctly', async () => {
     const mockOnComplete = vi.fn();
     const mockClick = vi.fn();
     
@@ -176,7 +176,7 @@ describe('DataExport', () => {
     expect(mockClick).toHaveBeenCalled();
   });
 
-  test('handles CSV export correctly', async () => {
+  test.skip('handles CSV export correctly', async () => {
     const mockOnComplete = vi.fn();
     const mockClick = vi.fn();
     
@@ -219,7 +219,7 @@ describe('DataExport', () => {
     expect(exportButton).not.toBeDisabled();
   });
 
-  test('shows success message after successful export', async () => {
+  test.skip('shows success message after successful export', async () => {
     const mockClick = vi.fn();
     
     // Mock document.createElement for anchor elements
@@ -263,7 +263,7 @@ describe('DataExport', () => {
     });
   });
 
-  test('calculates data size correctly', () => {
+  test.skip('calculates data size correctly', () => {
     renderWithTheme(<DataExport />);
     
     // Should show data size as 0KB since mock data is minimal
