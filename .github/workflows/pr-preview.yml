@@ -8,6 +8,9 @@ jobs:
   preview:
     name: Build Preview
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     
     steps:
     - uses: actions/checkout@v4
@@ -37,6 +40,7 @@ jobs:
     - name: Comment PR with status
       uses: actions/github-script@v6
       if: always()
+      continue-on-error: true
       with:
         script: |
           const status = '${{ job.status }}';
@@ -46,9 +50,13 @@ jobs:
             ? 'Build and tests passed! Preview artifacts are available.'
             : 'Build or tests failed. Please check the logs.';
           
-          github.rest.issues.createComment({
-            issue_number: prNumber,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: `${emoji} **PR Preview Status**: ${message}\n\nRun ID: ${{ github.run_id }}`
-          })
+          try {
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `${emoji} **PR Preview Status**: ${message}\n\nRun ID: ${{ github.run_id }}`
+            });
+          } catch (error) {
+            console.log('Failed to comment on PR:', error.message);
+          }
