@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, Question, QuestionAttempt, Session, Settings } from '../types';
+import { User, Question, Settings } from '../types';
 import { QuestionBankService } from '../services/questionBank';
 import { StorageService } from '../services/storage';
-import { ScoringService } from '../services/scoring';
+import { SessionManager, GameSession } from '../services/sessionManager';
+import { SessionTimer } from './SessionTimer';
+import { ScoreTracker } from './ScoreTracker';
+import { SessionSummary } from './SessionSummary';
 import {
   MultipleChoice,
   TranslationInput,
@@ -18,16 +21,17 @@ interface SessionViewProps {
 
 type QuestionTypeKey = 'multipleChoice' | 'translation' | 'spelling' | 'matching';
 
-function SessionView({ user }: SessionViewProps) {
+function SessionView({ }: SessionViewProps) {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [sessionScore, setSessionScore] = useState(0);
-  const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [questionAttempts, setQuestionAttempts] = useState<QuestionAttempt[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [sessionStartTime] = useState(Date.now());
   const [settings] = useState<Settings>(StorageService.getSettings());
+  const [gameSession, setGameSession] = useState<GameSession | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
+  const [completedSession, setCompletedSession] = useState<GameSession | null>(null);
+  const [lastQuestionPoints, setLastQuestionPoints] = useState<number>(0);
 
   useEffect(() => {
     loadQuestions();
@@ -35,8 +39,15 @@ function SessionView({ user }: SessionViewProps) {
 
   const loadQuestions = async () => {
     try {
-      const allQuestions = await QuestionBankService.getRandomQuestions(20);
+      const allQuestions = await QuestionBankService.getRandomQuestions(50); // More questions for timed session
       setQuestions(allQuestions);
+      
+      // Start session with timer
+      const duration = settings.sessionDuration * 60; // Convert minutes to seconds
+      const categories = ['all']; // Could be made configurable
+      const session = SessionManager.startSession(duration, categories);
+      setGameSession(session);
+      
       setIsLoading(false);
     } catch (error) {
       console.error('Failed to load questions:', error);
@@ -57,37 +68,34 @@ function SessionView({ user }: SessionViewProps) {
     return types[index % types.length];
   };
 
-  const handleAnswer = (correct: boolean, timeSpent: number) => {
-    const question = questions[currentQuestionIndex];
-    const questionType = getQuestionType(currentQuestionIndex);
+  const handleAnswer = (correct: boolean, _timeSpent: number, attemptCount: number = 1) => {
+    if (!gameSession) return;
     
-    const scoreResult = ScoringService.calculateScore(
+    const question = questions[currentQuestionIndex];
+    
+    // Record attempt and get points
+    const points = SessionManager.recordAttempt(
+      question.id,
       correct,
-      timeSpent,
-      question.difficulty || 1,
-      questionType
+      attemptCount,
+      question.difficulty || 1
     );
     
-    setSessionScore(sessionScore + scoreResult.totalPoints);
-    if (correct) setCorrectAnswers(correctAnswers + 1);
+    setLastQuestionPoints(points);
     
-    const attempt: QuestionAttempt = {
-      questionId: question.id,
-      correct,
-      timeSpent,
-      attemptCount: 1,
-    };
-    setQuestionAttempts([...questionAttempts, attempt]);
-    
-    // Update progress
+    // Update progress tracking
     StorageService.updateProgress(question.id, correct);
     
-    // Move to next question or end session
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      endSession();
-    }
+    // Move to next question after a brief delay to show points
+    setTimeout(() => {
+      setLastQuestionPoints(0);
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        SessionManager.startQuestion(); // Start timing next question
+      } else {
+        endSession();
+      }
+    }, 1500);
   };
 
   const handleSkip = () => {
@@ -95,27 +103,35 @@ function SessionView({ user }: SessionViewProps) {
   };
 
   const endSession = () => {
-    const session: Session = {
-      id: Date.now().toString(),
-      date: sessionStartTime,
-      duration: Math.floor((Date.now() - sessionStartTime) / 1000),
-      score: sessionScore,
-      questionsAnswered: questionAttempts.length,
-      correctAnswers,
-    };
-    
-    StorageService.addSession(session);
-    
-    // Update user stats
-    const updatedUser = {
-      ...user,
-      totalSessions: user.totalSessions + 1,
-      totalPoints: user.totalPoints + sessionScore,
-    };
-    StorageService.setUser(updatedUser);
-    
-    // Navigate to session summary
-    navigate('/progress', { state: { lastSession: session } });
+    const session = SessionManager.endSession();
+    if (session) {
+      setCompletedSession(session);
+      setShowSummary(true);
+    }
+  };
+
+  const handleTimeUp = () => {
+    endSession();
+  };
+
+  const handleTogglePause = () => {
+    if (isPaused) {
+      SessionManager.resumeSession();
+    } else {
+      SessionManager.pauseSession();
+    }
+    setIsPaused(!isPaused);
+  };
+
+  const handleStartNewSession = () => {
+    setShowSummary(false);
+    setCompletedSession(null);
+    setCurrentQuestionIndex(0);
+    loadQuestions(); // Restart with new questions
+  };
+
+  const handleBackToMenu = () => {
+    navigate('/menu');
   };
 
   if (isLoading) {
@@ -150,42 +166,73 @@ function SessionView({ user }: SessionViewProps) {
     );
   }
 
+  // Show session summary if session is completed
+  if (showSummary && completedSession) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-8">
+        <div className="max-w-4xl mx-auto px-4">
+          <SessionSummary
+            session={completedSession}
+            onStartNew={handleStartNewSession}
+            onBackToMenu={handleBackToMenu}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (!gameSession) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-4xl mb-4">⏳</div>
+          <p className="text-lg text-gray-600">Sessie starten...</p>
+        </div>
+      </div>
+    );
+  }
+
   const currentQuestion = questions[currentQuestionIndex];
   const questionType = getQuestionType(currentQuestionIndex);
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+  const currentStreak = SessionManager.getCurrentStreak();
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4">
-        {/* Header */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-          <div className="flex justify-between items-center mb-4">
-            <div>
-              <h1 className="text-2xl font-bold text-french-blue">Oefensessie</h1>
-              <p className="text-gray-600">Vraag {currentQuestionIndex + 1} van {questions.length}</p>
-            </div>
-            <div className="text-right">
-              <p className="text-2xl font-bold text-blue-600">{sessionScore} punten</p>
-              <p className="text-sm text-gray-500">{correctAnswers} correct</p>
-            </div>
+        {/* Timer */}
+        <div className="mb-6">
+          <SessionTimer
+            duration={gameSession.duration}
+            onTimeUp={handleTimeUp}
+            isPaused={isPaused}
+            onTogglePause={handleTogglePause}
+          />
+        </div>
+
+        {/* Score Tracker */}
+        <div className="mb-6">
+          <ScoreTracker
+            score={gameSession.score}
+            streak={currentStreak}
+            questionsAnswered={gameSession.questionsAnswered}
+            correctAnswers={gameSession.correctAnswers}
+            lastQuestionPoints={lastQuestionPoints}
+          />
+        </div>
+
+        {/* Question Progress */}
+        <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-sm text-gray-600">Vraag {currentQuestionIndex + 1} van {questions.length}</span>
+            <span className="text-sm text-gray-600">{Math.round(progress)}% voltooid</span>
           </div>
-          
-          {/* Progress bar */}
-          <div className="w-full bg-gray-200 rounded-full h-3">
+          <div className="w-full bg-gray-200 rounded-full h-2">
             <div
-              className="bg-blue-500 h-3 rounded-full transition-all duration-300"
+              className="bg-blue-500 h-2 rounded-full transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
-          
-          {/* Streak indicator */}
-          {ScoringService.getCurrentStreak() > 0 && (
-            <div className="mt-2 text-center">
-              <span className="text-sm text-orange-600 font-medium">
-                🔥 {ScoringService.getCurrentStreak()} op rij!
-              </span>
-            </div>
-          )}
         </div>
 
         {/* Question component */}

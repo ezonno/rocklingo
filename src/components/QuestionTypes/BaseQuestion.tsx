@@ -3,7 +3,7 @@ import { Question } from '../../types';
 
 export interface BaseQuestionProps {
   question: Question;
-  onAnswer: (correct: boolean, timeSpent: number) => void;
+  onAnswer: (correct: boolean, timeSpent: number, attemptCount?: number) => void;
   onSkip?: () => void;
 }
 

@@ -24,10 +24,14 @@ export class StorageService {
     return data ? JSON.parse(data) : [];
   }
 
+  static setSessions(sessions: Session[]): void {
+    localStorage.setItem(STORAGE_KEYS.SESSIONS, JSON.stringify(sessions));
+  }
+
   static addSession(session: Session): void {
     const sessions = this.getSessions();
     sessions.push(session);
-    localStorage.setItem(STORAGE_KEYS.SESSIONS, JSON.stringify(sessions));
+    this.setSessions(sessions);
   }
 
   static getSettings(): Settings {

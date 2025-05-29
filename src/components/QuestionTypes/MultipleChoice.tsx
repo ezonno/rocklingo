@@ -6,6 +6,7 @@ export function MultipleChoice({ question, onAnswer, onSkip }: BaseQuestionProps
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [options, setOptions] = useState<string[]>([]);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [attemptCount, setAttemptCount] = useState(0);
   const { getTimeSpent } = useQuestionTimer();
 
   useEffect(() => {
@@ -33,12 +34,13 @@ export function MultipleChoice({ question, onAnswer, onSkip }: BaseQuestionProps
     
     setSelectedAnswer(answer);
     setShowFeedback(true);
+    setAttemptCount(attemptCount + 1);
     
     const isCorrect = answer === question.french;
     
     // Auto-proceed after showing feedback
     setTimeout(() => {
-      onAnswer(isCorrect, getTimeSpent());
+      onAnswer(isCorrect, getTimeSpent(), attemptCount + 1);
     }, isCorrect ? 1000 : 2000);
   };
 

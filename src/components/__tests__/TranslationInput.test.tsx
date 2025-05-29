@@ -65,9 +65,9 @@ describe('TranslationInput', () => {
     // Should show success feedback
     expect(screen.getByText(/Uitstekend/i)).toBeInTheDocument();
 
-    // Should call onAnswer with correct = true
+    // Should call onAnswer with correct = true and attempt count
     await waitFor(() => {
-      expect(mockOnAnswer).toHaveBeenCalledWith(true, expect.any(Number));
+      expect(mockOnAnswer).toHaveBeenCalledWith(true, expect.any(Number), 1);
     }, { timeout: 2000 });
   });
 
@@ -112,9 +112,9 @@ describe('TranslationInput', () => {
     // Should show error feedback with correct answer
     expect(screen.getByText(/Het juiste antwoord is: "chien"/)).toBeInTheDocument();
 
-    // Should call onAnswer with correct = false
+    // Should call onAnswer with correct = false and attempt count
     await waitFor(() => {
-      expect(mockOnAnswer).toHaveBeenCalledWith(false, expect.any(Number));
+      expect(mockOnAnswer).toHaveBeenCalledWith(false, expect.any(Number), 1);
     }, { timeout: 3000 });
   });
 
