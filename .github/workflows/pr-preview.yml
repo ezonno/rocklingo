@@ -28,7 +28,7 @@ jobs:
       run: npm run build
     
     - name: Upload preview artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: pr-preview-${{ github.event.pull_request.number }}
         path: dist/
