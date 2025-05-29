@@ -106,10 +106,9 @@ describe('FrenchMascot', () => {
       <FrenchMascot onClick={onClickMock} showMessage={false} />
     );
     
-    const mascot = screen.getByRole('img');
-    // The mascot div gets focus but keyboard events aren't implemented yet
-    fireEvent.focus(mascot);
-    expect(mascot).toHaveFocus();
+    const mascot = screen.getByRole('button');
+    // Verify the mascot is keyboard accessible with tabindex
+    expect(mascot).toHaveAttribute('tabindex', '0');
   });
 
   test('displays speech bubble with correct styling', () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import { 
@@ -47,7 +47,7 @@ describe('ConfettiCelebration', () => {
   });
 
   test('does not render when isActive is false', () => {
-    const { container } = renderWithTheme(
+    renderWithTheme(
       <ConfettiCelebration isActive={false} />
     );
     
@@ -95,14 +95,12 @@ describe('ConfettiCelebration', () => {
     );
     
     // Fast-forward time past duration
-    act(() => {
-      vi.advanceTimersByTime(1100); // Add extra buffer
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(1100); // Add extra buffer
     });
     
-    // Wait for callback with longer timeout
-    await waitFor(() => {
-      expect(onCompleteMock).toHaveBeenCalledTimes(1);
-    }, { timeout: 2000 });
+    // Verify callback was called
+    expect(onCompleteMock).toHaveBeenCalledTimes(1);
   });
 
   test('adjusts particle count based on intensity', () => {
@@ -301,13 +299,11 @@ describe('useConfetti Hook', () => {
     expect(statusElement).toHaveTextContent('active');
     
     // Wait for auto-completion
-    act(() => {
-      vi.advanceTimersByTime(100);
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(150);
     });
     
-    await waitFor(() => {
-      expect(statusElement).toHaveTextContent('inactive');
-    });
+    expect(statusElement).toHaveTextContent('inactive');
   });
 });
 

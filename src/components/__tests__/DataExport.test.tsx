@@ -22,14 +22,17 @@ const renderWithTheme = (component: React.ReactElement) => {
   );
 };
 
-// Mock URL methods
-global.URL.createObjectURL = vi.fn(() => 'mock-blob-url');
-global.URL.revokeObjectURL = vi.fn();
+// Store original methods
+const originalCreateElement = document.createElement.bind(document);
 
 describe('DataExport', () => {
   beforeEach(() => {
     // Reset mocks
     vi.clearAllMocks();
+    
+    // Mock URL methods
+    global.URL.createObjectURL = vi.fn(() => 'mock-blob-url');
+    global.URL.revokeObjectURL = vi.fn();
     
     // Setup default mock return values
     mockStorageService.getUser.mockReturnValue({
@@ -81,6 +84,10 @@ describe('DataExport', () => {
       averageScore: 85,
       bestScore: 90
     });
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   test('renders export interface', () => {
@@ -142,55 +149,64 @@ describe('DataExport', () => {
 
   test('handles JSON export correctly', async () => {
     const mockOnComplete = vi.fn();
+    const mockClick = vi.fn();
+    
+    // Mock document.createElement for anchor elements
+    vi.spyOn(document, 'createElement').mockImplementation((tag) => {
+      if (tag === 'a') {
+        const element = originalCreateElement('a');
+        element.click = mockClick;
+        return element;
+      }
+      return originalCreateElement(tag);
+    });
+    
+    vi.spyOn(document.body, 'appendChild').mockImplementation(() => null as any);
+    vi.spyOn(document.body, 'removeChild').mockImplementation(() => null as any);
+    
     renderWithTheme(<DataExport onExportComplete={mockOnComplete} />);
-    
-    // Mock document methods
-    const mockLink = {
-      href: '',
-      download: '',
-      click: vi.fn()
-    };
-    
-    vi.spyOn(document, 'createElement').mockReturnValue(mockLink as any);
-    vi.spyOn(document.body, 'appendChild').mockImplementation(vi.fn());
-    vi.spyOn(document.body, 'removeChild').mockImplementation(vi.fn());
     
     const exportButton = screen.getByRole('button', { name: /Exporteer als JSON/i });
     fireEvent.click(exportButton);
     
     await waitFor(() => {
-      expect(mockOnComplete).toHaveBeenCalled();
+      expect(mockOnComplete).toHaveBeenCalledWith(true, expect.stringContaining('.json'));
     });
     
-    expect(mockLink.click).toHaveBeenCalled();
+    expect(mockClick).toHaveBeenCalled();
   });
 
   test('handles CSV export correctly', async () => {
     const mockOnComplete = vi.fn();
+    const mockClick = vi.fn();
+    
+    // Mock document.createElement for anchor elements
+    vi.spyOn(document, 'createElement').mockImplementation((tag) => {
+      if (tag === 'a') {
+        const element = originalCreateElement('a');
+        element.click = mockClick;
+        return element;
+      }
+      return originalCreateElement(tag);
+    });
+    
+    vi.spyOn(document.body, 'appendChild').mockImplementation(() => null as any);
+    vi.spyOn(document.body, 'removeChild').mockImplementation(() => null as any);
+    
     renderWithTheme(<DataExport onExportComplete={mockOnComplete} />);
     
     // Switch to CSV format
     const csvRadio = screen.getByDisplayValue('csv');
     fireEvent.click(csvRadio);
     
-    // Mock document methods
-    const mockLink = {
-      href: '',
-      download: '',
-      click: vi.fn()
-    };
-    vi.spyOn(document, 'createElement').mockReturnValue(mockLink as any);
-    vi.spyOn(document.body, 'appendChild').mockImplementation(vi.fn());
-    vi.spyOn(document.body, 'removeChild').mockImplementation(vi.fn());
-    
     const exportButton = screen.getByRole('button', { name: /Exporteer als CSV/i });
     fireEvent.click(exportButton);
     
     await waitFor(() => {
-      expect(mockOnComplete).toHaveBeenCalled();
+      expect(mockOnComplete).toHaveBeenCalledWith(true, expect.stringContaining('.csv'));
     });
     
-    expect(mockLink.click).toHaveBeenCalled();
+    expect(mockClick).toHaveBeenCalled();
   });
 
   test('shows loading state during export', async () => {
@@ -204,45 +220,70 @@ describe('DataExport', () => {
   });
 
   test('shows success message after successful export', async () => {
+    const mockClick = vi.fn();
+    
+    // Mock document.createElement for anchor elements
+    vi.spyOn(document, 'createElement').mockImplementation((tag) => {
+      if (tag === 'a') {
+        const element = originalCreateElement('a');
+        element.click = mockClick;
+        return element;
+      }
+      return originalCreateElement(tag);
+    });
+    
+    vi.spyOn(document.body, 'appendChild').mockImplementation(() => null as any);
+    vi.spyOn(document.body, 'removeChild').mockImplementation(() => null as any);
+    
     renderWithTheme(<DataExport />);
     
-    // Test renders without error - actual success message testing would require full DOM mocking
     const exportButton = screen.getByRole('button', { name: /Exporteer als JSON/i });
-    expect(exportButton).toBeInTheDocument();
+    fireEvent.click(exportButton);
+    
+    await waitFor(() => {
+      const successMessage = screen.getByText(/Export succesvol/i);
+      expect(successMessage).toBeInTheDocument();
+    });
   });
 
   test('handles export errors gracefully', async () => {
+    // Mock error
+    global.URL.createObjectURL = vi.fn(() => {
+      throw new Error('Export failed');
+    });
+    
     renderWithTheme(<DataExport />);
     
-    // Test renders without error - actual error handling testing would require full error simulation
     const exportButton = screen.getByRole('button', { name: /Exporteer als JSON/i });
-    expect(exportButton).toBeInTheDocument();
+    fireEvent.click(exportButton);
+    
+    await waitFor(() => {
+      const errorMessage = screen.getByText(/Export mislukt/i);
+      expect(errorMessage).toBeInTheDocument();
+    });
   });
 
   test('calculates data size correctly', () => {
     renderWithTheme(<DataExport />);
     
-    // Should show data size information
-    const dataSizeElements = screen.getAllByText(/KB|MB|B/);
-    expect(dataSizeElements.length).toBeGreaterThan(0);
+    // Should show data size as 0KB since mock data is minimal
+    expect(screen.getByText('0KB')).toBeInTheDocument();
   });
 
   test('applies custom className', () => {
-    renderWithTheme(
+    const { container } = renderWithTheme(
       <DataExport className="custom-export-class" />
     );
     
-    // Component renders successfully with custom className
-    const title = screen.getByText('📤 Voortgang Exporteren');
-    expect(title).toBeInTheDocument();
+    const exportDiv = container.querySelector('.custom-export-class');
+    expect(exportDiv).toBeInTheDocument();
   });
 
   test('shows privacy notice', () => {
     renderWithTheme(<DataExport />);
     
-    // Check for privacy-related text
-    const privacyElements = screen.getAllByText(/Privacy|lokaal|data/i);
-    expect(privacyElements.length).toBeGreaterThan(0);
+    // Check for data text in the component
+    expect(screen.getByText('Data')).toBeInTheDocument();
   });
 
   test('generates correct export data structure for JSON', () => {
