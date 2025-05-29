@@ -127,7 +127,7 @@ describe('Predefined Icon Components', () => {
 
 describe('FrenchIconGallery', () => {
   test('renders all French icons', () => {
-    const onSelectMock = jest.fn();
+    const onSelectMock = vi.fn();
     renderWithTheme(<FrenchIconGallery onIconSelect={onSelectMock} />);
     
     // Check for presence of main icons
@@ -152,8 +152,9 @@ describe('FrenchIconGallery', () => {
       <FrenchIconGallery selectedIcon="croissant" />
     );
     
-    const croissantContainer = screen.getByText('Croissant').closest('div');
-    expect(croissantContainer).toHaveClass('bg-blue-100', 'ring-2', 'ring-blue-500');
+    // Find the parent button container of the Croissant text
+    const croissantButton = screen.getByText('Croissant').closest('button');
+    expect(croissantButton).toHaveClass('bg-blue-100', 'ring-2', 'ring-blue-500');
   });
 
   test('shows icon names correctly', () => {
