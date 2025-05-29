@@ -26,6 +26,9 @@ jobs:
     - name: Run TypeScript checks
       run: npm run lint
     
+    - name: Build services for workbook validation
+      run: tsc -p tsconfig.build.json
+    
     - name: Validate workbook format
       run: npm run workbook:validate
     
