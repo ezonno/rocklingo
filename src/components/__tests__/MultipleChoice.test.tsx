@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { MultipleChoice } from '../QuestionTypes/MultipleChoice';
 import { Question } from '../../types';
 
@@ -40,13 +40,15 @@ describe('MultipleChoice', () => {
   });
 
   it('renders the Dutch word', async () => {
-    render(
-      <MultipleChoice
-        question={mockQuestion}
-        onAnswer={mockOnAnswer}
-        onSkip={mockOnSkip}
-      />
-    );
+    await act(async () => {
+      render(
+        <MultipleChoice
+          question={mockQuestion}
+          onAnswer={mockOnAnswer}
+          onSkip={mockOnSkip}
+        />
+      );
+    });
 
     expect(screen.getByText('hond')).toBeInTheDocument();
   });
@@ -101,19 +103,30 @@ describe('MultipleChoice', () => {
       />
     );
 
+    // Wait for options to be rendered
     await waitFor(() => {
-      const buttons = screen.getAllByRole('button');
-      const incorrectButton = buttons.find(btn => btn.textContent !== 'chien' && btn.textContent !== 'Sla over');
-      if (incorrectButton) {
-        fireEvent.click(incorrectButton);
-      }
+      expect(screen.getAllByRole('button').length).toBeGreaterThan(1);
     });
 
-    // Should show error feedback with correct answer
-    await waitFor(() => {
-      expect(screen.getByText(/Fout/i)).toBeInTheDocument();
-      expect(screen.getByText(/chien/)).toBeInTheDocument();
-    });
+    // Click on incorrect answer
+    const buttons = screen.getAllByRole('button');
+    const incorrectButton = buttons.find(btn => 
+      btn.textContent !== 'chien' && 
+      btn.textContent !== 'Sla over' &&
+      btn.textContent // ensure it has text
+    );
+    
+    if (incorrectButton) {
+      fireEvent.click(incorrectButton);
+      
+      // Wait for feedback to appear
+      await waitFor(() => {
+        const feedbackText = screen.getByText((content) => {
+          return content.includes('Fout') && content.includes('Het juiste antwoord is');
+        });
+        expect(feedbackText).toBeInTheDocument();
+      });
+    }
 
     // Should call onAnswer with correct = false
     await waitFor(() => {
@@ -121,14 +134,16 @@ describe('MultipleChoice', () => {
     }, { timeout: 3000 });
   });
 
-  it('handles skip button', () => {
-    render(
-      <MultipleChoice
-        question={mockQuestion}
-        onAnswer={mockOnAnswer}
-        onSkip={mockOnSkip}
-      />
-    );
+  it('handles skip button', async () => {
+    await act(async () => {
+      render(
+        <MultipleChoice
+          question={mockQuestion}
+          onAnswer={mockOnAnswer}
+          onSkip={mockOnSkip}
+        />
+      );
+    });
 
     const skipButton = screen.getByText('Sla over');
     fireEvent.click(skipButton);

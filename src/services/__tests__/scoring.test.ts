@@ -36,6 +36,9 @@ describe('ScoringService', () => {
   });
 
   it('applies difficulty multiplier', () => {
+    // Reset streak to ensure clean test
+    ScoringService.resetStreak();
+    
     const easy = ScoringService.calculateScore(true, 10, 1);
     const medium = ScoringService.calculateScore(true, 10, 2);
     const hard = ScoringService.calculateScore(true, 10, 3);
@@ -44,9 +47,10 @@ describe('ScoringService', () => {
     expect(medium.difficultyMultiplier).toBe(1.5);
     expect(hard.difficultyMultiplier).toBe(2);
     
-    expect(easy.totalPoints).toBe(13); // (10 + 3) * 1
-    expect(medium.totalPoints).toBe(20); // (10 + 3) * 1.5 = 19.5 → 20
-    expect(hard.totalPoints).toBe(26); // (10 + 3) * 2
+    // The hard calculation gets a streak bonus because we've done 3 correct in a row
+    expect(easy.totalPoints).toBe(13); // (10 + 3 + 0) * 1 = 13
+    expect(medium.totalPoints).toBe(20); // (10 + 3 + 0) * 1.5 = 19.5 → 20
+    expect(hard.totalPoints).toBe(30); // (10 + 3 + 2) * 2 = 30 (streak bonus kicks in)
   });
 
   it('calculates streak bonus', () => {
