@@ -12,7 +12,7 @@ function MainMenu({ user }: MainMenuProps) {
       description: 'Begin een nieuwe oefensessie',
       icon: '📚',
       link: '/session',
-      color: 'bg-french-blue hover:bg-blue-700',
+      color: 'bg-blue-400 hover:bg-blue-600',
     },
     {
       title: 'Voortgang',
@@ -51,12 +51,12 @@ function MainMenu({ user }: MainMenuProps) {
           </div>
         </header>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {menuItems.map((item) => (
             <Link
               key={item.link}
               to={item.link}
-              className={`${item.color} text-white rounded-2xl p-8 text-center transform transition-all duration-200 hover:scale-105 hover:shadow-xl`}
+              className={`${item.color} text-white rounded-2xl p-8 text-center transform transition-all duration-200 hover:scale-105 hover:shadow-xl block`}
             >
               <div className="text-6xl mb-4">{item.icon}</div>
               <h2 className="text-2xl font-bold mb-2">{item.title}</h2>
