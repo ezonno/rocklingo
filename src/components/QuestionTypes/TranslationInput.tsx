@@ -52,7 +52,7 @@ export function TranslationInput({ question, onAnswer, onSkip }: BaseQuestionPro
     
     // Auto-proceed after showing feedback
     setTimeout(() => {
-      onAnswer(correct, getTimeSpent());
+      onAnswer(correct, getTimeSpent(), attempts + 1);
     }, correct ? 1500 : 2500);
   };
 

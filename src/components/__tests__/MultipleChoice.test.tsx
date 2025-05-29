@@ -88,9 +88,9 @@ describe('MultipleChoice', () => {
       expect(screen.getByText(/Correct/i)).toBeInTheDocument();
     });
 
-    // Should call onAnswer with correct = true
+    // Should call onAnswer with correct = true and attempt count
     await waitFor(() => {
-      expect(mockOnAnswer).toHaveBeenCalledWith(true, expect.any(Number));
+      expect(mockOnAnswer).toHaveBeenCalledWith(true, expect.any(Number), 1);
     }, { timeout: 2000 });
   });
 
@@ -128,9 +128,9 @@ describe('MultipleChoice', () => {
       });
     }
 
-    // Should call onAnswer with correct = false
+    // Should call onAnswer with correct = false and attempt count
     await waitFor(() => {
-      expect(mockOnAnswer).toHaveBeenCalledWith(false, expect.any(Number));
+      expect(mockOnAnswer).toHaveBeenCalledWith(false, expect.any(Number), 1);
     }, { timeout: 3000 });
   });
 
