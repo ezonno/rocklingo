@@ -270,6 +270,63 @@ function SettingsView() {
                 </div>
               </div>
 
+              <div className="p-4 border border-gray-200 rounded-lg">
+                <h3 className="font-medium text-gray-800 mb-3">
+                  ⌨️ Franse Accent Toetsenbord
+                </h3>
+                <div className="space-y-3">
+                  <label className="flex items-center justify-between">
+                    <span className="text-sm text-gray-700">Accent toetsenbord inschakelen</span>
+                    <input
+                      type="checkbox"
+                      checked={settings.accentKeypad?.enabled ?? true}
+                      onChange={(e) => setSettings({
+                        ...settings,
+                        accentKeypad: {
+                          ...settings.accentKeypad,
+                          enabled: e.target.checked,
+                          defaultVisible: settings.accentKeypad?.defaultVisible ?? 'auto',
+                          position: settings.accentKeypad?.position ?? 'auto',
+                        },
+                      })}
+                      className="h-4 w-4 rounded focus:ring-2"
+                      style={{ accentColor: theme.colors.primary }}
+                    />
+                  </label>
+                  
+                  {settings.accentKeypad?.enabled && (
+                    <>
+                      <div>
+                        <label className="block text-sm text-gray-700 mb-1">Standaard zichtbaarheid</label>
+                        <select
+                          value={settings.accentKeypad?.defaultVisible ?? 'auto'}
+                          onChange={(e) => setSettings({
+                            ...settings,
+                            accentKeypad: {
+                              ...settings.accentKeypad!,
+                              enabled: settings.accentKeypad?.enabled ?? true,
+                              defaultVisible: e.target.value as 'always' | 'never' | 'auto',
+                              position: settings.accentKeypad?.position ?? 'auto',
+                            },
+                          })}
+                          className="w-full px-3 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+                        >
+                          <option value="auto">Automatisch</option>
+                          <option value="always">Altijd tonen</option>
+                          <option value="never">Nooit tonen</option>
+                        </select>
+                      </div>
+                      
+                      <div className="text-xs text-gray-500">
+                        <p>• Klik op het toetsenbord icoon bij tekstinvoer</p>
+                        <p>• Voeg Franse accenten toe: à, è, é, ê, ë, etc.</p>
+                        <p>• Ondersteunt zowel hoofdletters als kleine letters</p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+
               <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                 <h3 className="font-medium text-blue-800 mb-2">
                   🎨 Kleurenpalet Preview

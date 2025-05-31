@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { TranslationInput } from '../QuestionTypes/TranslationInput';
 import { Question } from '../../types';
+import { ThemeProvider } from '../ThemeProvider';
 
 describe('TranslationInput', () => {
   const mockQuestion: Question = {
@@ -21,8 +22,16 @@ describe('TranslationInput', () => {
     vi.clearAllMocks();
   });
 
+  const renderWithTheme = (component: React.ReactNode) => {
+    return render(
+      <ThemeProvider>
+        {component}
+      </ThemeProvider>
+    );
+  };
+
   it('renders the Dutch word', () => {
-    render(
+    renderWithTheme(
       <TranslationInput
         question={mockQuestion}
         onAnswer={mockOnAnswer}
@@ -34,7 +43,7 @@ describe('TranslationInput', () => {
   });
 
   it('shows gender hint', () => {
-    render(
+    renderWithTheme(
       <TranslationInput
         question={mockQuestion}
         onAnswer={mockOnAnswer}
@@ -48,7 +57,7 @@ describe('TranslationInput', () => {
   it('handles correct answer', async () => {
     const user = userEvent.setup();
     
-    render(
+    renderWithTheme(
       <TranslationInput
         question={mockQuestion}
         onAnswer={mockOnAnswer}
@@ -74,7 +83,7 @@ describe('TranslationInput', () => {
   it('handles correct answer with article', async () => {
     const user = userEvent.setup();
     
-    render(
+    renderWithTheme(
       <TranslationInput
         question={mockQuestion}
         onAnswer={mockOnAnswer}
@@ -95,7 +104,7 @@ describe('TranslationInput', () => {
   it('handles incorrect answer', async () => {
     const user = userEvent.setup();
     
-    render(
+    renderWithTheme(
       <TranslationInput
         question={mockQuestion}
         onAnswer={mockOnAnswer}
@@ -127,7 +136,7 @@ describe('TranslationInput', () => {
   it('normalizes input (case insensitive)', async () => {
     const user = userEvent.setup();
     
-    render(
+    renderWithTheme(
       <TranslationInput
         question={mockQuestion}
         onAnswer={mockOnAnswer}

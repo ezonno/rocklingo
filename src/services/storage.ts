@@ -45,6 +45,11 @@ export class StorageService {
         matching: true,
       },
       difficulty: 'medium',
+      accentKeypad: {
+        enabled: true,
+        defaultVisible: 'auto',
+        position: 'auto',
+      },
     };
   }
 

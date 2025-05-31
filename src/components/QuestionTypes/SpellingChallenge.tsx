@@ -1,5 +1,7 @@
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, FormEvent, useRef } from 'react';
 import { BaseQuestionProps, BaseQuestionLayout, useQuestionTimer } from './BaseQuestion';
+import { FrenchAccentKeypad } from '../FrenchAccentKeypad';
+import { StorageService } from '../../services/storage';
 
 export function SpellingChallenge({ question, onAnswer, onSkip }: BaseQuestionProps) {
   const [userInput, setUserInput] = useState('');
@@ -7,7 +9,10 @@ export function SpellingChallenge({ question, onAnswer, onSkip }: BaseQuestionPr
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [playedAudio, setPlayedAudio] = useState(false);
+  const [showKeypad, setShowKeypad] = useState(false);
   const { getTimeSpent } = useQuestionTimer();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const settings = StorageService.getSettings();
 
   useEffect(() => {
     // Show word briefly then hide it
@@ -55,6 +60,23 @@ export function SpellingChallenge({ question, onAnswer, onSkip }: BaseQuestionPr
     }, correct ? 1500 : 2500);
   };
 
+  const handleCharacterInsert = (character: string) => {
+    if (!inputRef.current) return;
+    
+    const input = inputRef.current;
+    const start = input.selectionStart || 0;
+    const end = input.selectionEnd || 0;
+    
+    const newValue = userInput.slice(0, start) + character + userInput.slice(end);
+    setUserInput(newValue);
+    
+    // Set cursor position after the inserted character
+    setTimeout(() => {
+      input.focus();
+      input.setSelectionRange(start + 1, start + 1);
+    }, 0);
+  };
+
   return (
     <BaseQuestionLayout
       question={question}
@@ -86,8 +108,9 @@ export function SpellingChallenge({ question, onAnswer, onSkip }: BaseQuestionPr
 
       {!showWord && (
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
+          <div className="relative">
             <input
+              ref={inputRef}
               type="text"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
@@ -101,6 +124,18 @@ export function SpellingChallenge({ question, onAnswer, onSkip }: BaseQuestionPr
               `}
               autoFocus={!showWord}
             />
+            {settings.accentKeypad?.enabled && (
+              <button
+                type="button"
+                onClick={() => setShowKeypad(!showKeypad)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-500 hover:text-gray-700 transition-colors"
+                aria-label="Toggle French accent keypad"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </button>
+            )}
           </div>
 
           {!showFeedback && (
@@ -125,6 +160,15 @@ export function SpellingChallenge({ question, onAnswer, onSkip }: BaseQuestionPr
             </p>
           )}
         </div>
+      )}
+
+      {settings.accentKeypad?.enabled && (
+        <FrenchAccentKeypad
+          isVisible={showKeypad}
+          onCharacterInsert={handleCharacterInsert}
+          onClose={() => setShowKeypad(false)}
+          inputRef={inputRef}
+        />
       )}
     </BaseQuestionLayout>
   );
