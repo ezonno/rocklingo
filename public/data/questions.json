@@ -8,318 +8,66 @@
       "questions": [
         {
           "id": "q1",
-          "french": "vous allez",
-          "dutch": "u gaat, jullie gaan",
-          "category": "grammar",
-          "difficulty": 3
-        },
-        {
-          "id": "q2",
-          "french": "la rue",
-          "dutch": "de straat",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q3",
-          "french": "à gauche",
-          "dutch": "(naar) links",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q4",
-          "french": "à droite",
-          "dutch": "(naar) rechts",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q5",
-          "french": "premier/première",
-          "dutch": "eerste",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q6",
-          "french": "deuxième",
-          "dutch": "tweede",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q7",
-          "french": "troisième",
-          "dutch": "derde",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q8",
-          "french": "ensuite",
-          "dutch": "daarna",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q9",
-          "french": "on y va",
-          "dutch": "wij gaan erheen",
-          "category": "grammar",
-          "difficulty": 3
-        },
-        {
-          "id": "q10",
-          "french": "tout près",
-          "dutch": "dichtbij",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q11",
-          "french": "là-bas",
-          "dutch": "daarginds",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q12",
-          "french": "là",
-          "dutch": "daar",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q39",
           "french": "venir",
           "dutch": "komen",
           "category": "grammar",
           "difficulty": 1
         },
         {
-          "id": "q40",
-          "french": "penser",
-          "dutch": "denken",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q41",
-          "french": "attendre",
-          "dutch": "wachten",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q42",
-          "french": "la solution",
+          "id": "q2",
+          "french": "pensé",
           "dutch": "de oplossing",
           "category": "grammar",
           "difficulty": 2
         },
         {
-          "id": "q43",
-          "french": "la porte",
-          "dutch": "de deur",
+          "id": "q3",
+          "french": "améliorer",
+          "dutch": "jamais",
+          "category": "grammar",
+          "difficulty": 1
+        },
+        {
+          "id": "q4",
+          "french": "la solution",
+          "dutch": "gewaarlijk",
           "category": "grammar",
           "difficulty": 2
         },
         {
-          "id": "q44",
-          "french": "sans",
-          "dutch": "zonder",
+          "id": "q42",
+          "french": "jouer à la console",
+          "dutch": "gamen",
           "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q45",
-          "french": "dommage",
-          "dutch": "jammer",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q46",
-          "french": "dangereux",
-          "dutch": "gevaarlijk",
-          "category": "grammar",
-          "difficulty": 1
+          "difficulty": 3
         },
         {
           "id": "q47",
-          "french": "possible",
-          "dutch": "mogelijk",
+          "french": "premier/première",
+          "dutch": "eerste",
           "category": "grammar",
           "difficulty": 1
         },
         {
           "id": "q48",
-          "french": "important(e)",
-          "dutch": "belangrijk",
+          "french": "deuxième",
+          "dutch": "tweede",
           "category": "grammar",
           "difficulty": 1
         },
         {
           "id": "q49",
-          "french": "fou, folle",
-          "dutch": "gek",
+          "french": "troisième",
+          "dutch": "derde",
           "category": "grammar",
-          "difficulty": 2
+          "difficulty": 1
         },
         {
           "id": "q50",
-          "french": "bête",
-          "dutch": "stom",
+          "french": "ensuite",
+          "dutch": "daarna",
           "category": "grammar",
           "difficulty": 1
-        },
-        {
-          "id": "q51",
-          "french": "donc",
-          "dutch": "dus",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q54",
-          "french": "à la plage",
-          "dutch": "naar het strand",
-          "category": "grammar",
-          "difficulty": 3
-        },
-        {
-          "id": "q63",
-          "french": "permis",
-          "dutch": "toegestaan",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q64",
-          "french": "montrer",
-          "dutch": "laten zien",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q65",
-          "french": "la chance",
-          "dutch": "de kans, het geluk",
-          "category": "grammar",
-          "difficulty": 3
-        },
-        {
-          "id": "q66",
-          "french": "chaque",
-          "dutch": "iedere, elke",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q83",
-          "french": "la musique",
-          "dutch": "de muziek",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q84",
-          "french": "tu peux",
-          "dutch": "jij kunt",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q85",
-          "french": "choisir",
-          "dutch": "kiezen",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q86",
-          "french": "commencer",
-          "dutch": "beginnen",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q109",
-          "french": "le rêve",
-          "dutch": "de droom",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q110",
-          "french": "parce que",
-          "dutch": "omdat",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q111",
-          "french": "jusqu'à",
-          "dutch": "tot",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q112",
-          "french": "prochain(e)",
-          "dutch": "volgende",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q118",
-          "french": "on doit",
-          "dutch": "wij moeten",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q119",
-          "french": "il est parti",
-          "dutch": "hij is vertrokken",
-          "category": "grammar",
-          "difficulty": 3
-        },
-        {
-          "id": "q120",
-          "french": "je veux",
-          "dutch": "ik wil",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q121",
-          "french": "c'était",
-          "dutch": "het was",
-          "category": "grammar",
-          "difficulty": 2
-        },
-        {
-          "id": "q122",
-          "french": "retrouver",
-          "dutch": "terugvinden",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q123",
-          "french": "visiter",
-          "dutch": "bezoeken",
-          "category": "grammar",
-          "difficulty": 1
-        },
-        {
-          "id": "q125",
-          "french": "jouer à la console",
-          "dutch": "gamen",
-          "category": "grammar",
-          "difficulty": 3
         }
       ]
     },
@@ -329,84 +77,28 @@
       "icon": "🏠",
       "questions": [
         {
-          "id": "q59",
-          "french": "faire du théâtre",
-          "dutch": "toneelspelen",
-          "category": "daily",
-          "difficulty": 2
-        },
-        {
-          "id": "q60",
-          "french": "l'expérience",
-          "dutch": "de ervaring",
-          "category": "daily",
-          "difficulty": 2
-        },
-        {
-          "id": "q61",
-          "french": "le rendez-vous",
-          "dutch": "de afspraak",
-          "category": "daily",
-          "difficulty": 2
-        },
-        {
-          "id": "q62",
-          "french": "la prison",
-          "dutch": "de gevangenis",
-          "category": "daily",
-          "difficulty": 2
-        },
-        {
-          "id": "q126",
-          "french": "jouer de la guitare",
-          "dutch": "gitaar spelen",
-          "category": "daily",
-          "difficulty": 3
-        },
-        {
-          "id": "q127",
-          "french": "regarder la télé",
-          "dutch": "tv-kijken",
-          "category": "daily",
-          "difficulty": 2
-        },
-        {
-          "id": "q128",
-          "french": "faire les magasins",
-          "dutch": "winkelen",
-          "category": "daily",
-          "difficulty": 2
-        },
-        {
-          "id": "q129",
-          "french": "le temps",
-          "dutch": "de tijd",
-          "category": "daily",
-          "difficulty": 2
-        },
-        {
-          "id": "q146",
+          "id": "q26",
           "french": "presque",
           "dutch": "bijna",
           "category": "daily",
           "difficulty": 1
         },
         {
-          "id": "q147",
+          "id": "q27",
           "french": "au moins",
           "dutch": "minstens",
           "category": "daily",
           "difficulty": 2
         },
         {
-          "id": "q148",
+          "id": "q28",
           "french": "pas du tout",
           "dutch": "helemaal niet",
           "category": "daily",
           "difficulty": 3
         },
         {
-          "id": "q149",
+          "id": "q29",
           "french": "content(e)",
           "dutch": "tevreden, blij",
           "category": "daily",
@@ -420,121 +112,214 @@
       "icon": "📍",
       "questions": [
         {
-          "id": "q13",
-          "french": "le terrain de foot",
-          "dutch": "het voetbalveld",
+          "id": "q9",
+          "french": "jouer de la guitare",
+          "dutch": "gitaar spelen",
           "category": "places",
           "difficulty": 3
         },
         {
-          "id": "q14",
-          "french": "la gare",
-          "dutch": "het station",
+          "id": "q10",
+          "french": "aller",
+          "dutch": "andere",
           "category": "places",
-          "difficulty": 2
+          "difficulty": 1
+        },
+        {
+          "id": "q11",
+          "french": "autre",
+          "dutch": "nooit",
+          "category": "places",
+          "difficulty": 1
+        },
+        {
+          "id": "q12",
+          "french": "jamais",
+          "dutch": "perfect",
+          "category": "places",
+          "difficulty": 1
+        },
+        {
+          "id": "q13",
+          "french": "parfait(e)",
+          "dutch": "perfect",
+          "category": "places",
+          "difficulty": 1
+        },
+        {
+          "id": "q14",
+          "french": "Qu'est-ce qu'on va faire?",
+          "dutch": "Wat gaan wij doen?",
+          "category": "places",
+          "difficulty": 3
         },
         {
           "id": "q15",
-          "french": "tu as raison",
-          "dutch": "jij hebt gelijk",
+          "french": "On va faire les magasins",
+          "dutch": "Wij gaan winkelen",
           "category": "places",
           "difficulty": 3
         },
         {
           "id": "q16",
-          "french": "simple",
-          "dutch": "simpel, eenvoudig",
+          "french": "Et après?",
+          "dutch": "En daarna?",
           "category": "places",
           "difficulty": 2
         },
         {
           "id": "q17",
-          "french": "Pardon, où est la gare?",
-          "dutch": "Sorry, waar is het station?",
+          "french": "On va manger au McDo",
+          "dutch": "Wij gaan eten bij McDonald's",
           "category": "places",
           "difficulty": 3
         },
         {
           "id": "q18",
-          "french": "C'est tout droit",
-          "dutch": "Het is rechtdoor",
-          "category": "places",
-          "difficulty": 3
-        },
-        {
-          "id": "q19",
-          "french": "Vous pouvez répéter?",
-          "dutch": "Kunt u het herhalen?",
-          "category": "places",
-          "difficulty": 3
-        },
-        {
-          "id": "q20",
-          "french": "la capitale",
-          "dutch": "de hoofdstad",
+          "french": "l'habitant(e)",
+          "dutch": "de inwoner, inwoonster",
+          "gender": "m",
           "category": "places",
           "difficulty": 2
         },
         {
+          "id": "q19",
+          "french": "les gens m",
+          "dutch": "de mensen",
+          "gender": "m",
+          "category": "places",
+          "difficulty": 2
+        },
+        {
+          "id": "q20",
+          "french": "à la montagne",
+          "dutch": "in de bergen",
+          "category": "places",
+          "difficulty": 3
+        },
+        {
           "id": "q21",
-          "french": "la ville",
-          "dutch": "de stad",
+          "french": "le soleil",
+          "dutch": "de zon",
           "category": "places",
           "difficulty": 2
         },
         {
           "id": "q22",
-          "french": "la vue",
-          "dutch": "het uitzicht",
+          "french": "seulement",
+          "dutch": "alleen maar",
           "category": "places",
           "difficulty": 2
         },
         {
           "id": "q23",
-          "french": "parfois",
-          "dutch": "soms",
+          "french": "tout",
+          "dutch": "alles",
           "category": "places",
           "difficulty": 1
         },
         {
           "id": "q24",
-          "french": "pas de",
-          "dutch": "geen",
+          "french": "rien du tout",
+          "dutch": "helemaal niets",
           "category": "places",
-          "difficulty": 2
+          "difficulty": 3
         },
         {
           "id": "q25",
-          "french": "la sortie",
-          "dutch": "het uitstapje",
+          "french": "trop de",
+          "dutch": "te, te veel",
           "category": "places",
           "difficulty": 2
         },
         {
-          "id": "q26",
-          "french": "monter",
-          "dutch": "naar boven gaan, instappen",
-          "category": "places",
-          "difficulty": 3
-        },
-        {
-          "id": "q27",
-          "french": "en métro",
-          "dutch": "met de metro",
-          "category": "places",
-          "difficulty": 3
-        },
-        {
-          "id": "q157",
+          "id": "q37",
           "french": "Oui, c'est une grande ville",
           "dutch": "Ja, dat is een grote stad",
           "category": "places",
           "difficulty": 3
         },
         {
-          "id": "q158",
+          "id": "q38",
           "french": "Non, c'est un petit village",
           "dutch": "Nee, dat is een klein dorp",
+          "category": "places",
+          "difficulty": 3
+        },
+        {
+          "id": "q39",
+          "french": "retrouver",
+          "dutch": "terugvinden",
+          "category": "places",
+          "difficulty": 1
+        },
+        {
+          "id": "q40",
+          "french": "visiter",
+          "dutch": "bezoeken",
+          "category": "places",
+          "difficulty": 1
+        },
+        {
+          "id": "q51",
+          "french": "on y va",
+          "dutch": "wij gaan erheen",
+          "category": "places",
+          "difficulty": 3
+        },
+        {
+          "id": "q52",
+          "french": "tout près",
+          "dutch": "dichtbij",
+          "category": "places",
+          "difficulty": 2
+        },
+        {
+          "id": "q53",
+          "french": "là-bas",
+          "dutch": "daarginds",
+          "category": "places",
+          "difficulty": 1
+        },
+        {
+          "id": "q54",
+          "french": "là",
+          "dutch": "daar",
+          "category": "places",
+          "difficulty": 1
+        },
+        {
+          "id": "q64",
+          "french": "la vue",
+          "dutch": "het uitzicht",
+          "category": "places",
+          "difficulty": 2
+        },
+        {
+          "id": "q65",
+          "french": "parfois",
+          "dutch": "soms",
+          "category": "places",
+          "difficulty": 1
+        },
+        {
+          "id": "q66",
+          "french": "pas de",
+          "dutch": "geen",
+          "category": "places",
+          "difficulty": 2
+        },
+        {
+          "id": "q67",
+          "french": "la sortie",
+          "dutch": "het uitstapje",
+          "category": "places",
+          "difficulty": 2
+        },
+        {
+          "id": "q68",
+          "french": "monter",
+          "dutch": "naar boven gaan, instappen",
           "category": "places",
           "difficulty": 3
         }
@@ -546,56 +331,147 @@
       "icon": "🚗",
       "questions": [
         {
-          "id": "q28",
+          "id": "q43",
+          "french": "vous allez",
+          "dutch": "u gaat, jullie gaan",
+          "category": "transport",
+          "difficulty": 3
+        },
+        {
+          "id": "q44",
+          "french": "la rue",
+          "dutch": "de straat",
+          "category": "transport",
+          "difficulty": 2
+        },
+        {
+          "id": "q45",
+          "french": "à gauche",
+          "dutch": "(naar) links",
+          "category": "transport",
+          "difficulty": 2
+        },
+        {
+          "id": "q46",
+          "french": "à droite",
+          "dutch": "(naar) rechts",
+          "category": "transport",
+          "difficulty": 2
+        },
+        {
+          "id": "q55",
+          "french": "le terrain de foot",
+          "dutch": "het voetbalveld",
+          "category": "transport",
+          "difficulty": 3
+        },
+        {
+          "id": "q56",
+          "french": "la gare",
+          "dutch": "het station",
+          "category": "transport",
+          "difficulty": 2
+        },
+        {
+          "id": "q57",
+          "french": "tu as raison",
+          "dutch": "jij hebt gelijk",
+          "category": "transport",
+          "difficulty": 3
+        },
+        {
+          "id": "q58",
+          "french": "simple",
+          "dutch": "simpel, eenvoudig",
+          "category": "transport",
+          "difficulty": 2
+        },
+        {
+          "id": "q59",
+          "french": "Pardon, où est la gare?",
+          "dutch": "Sorry, waar is het station?",
+          "category": "transport",
+          "difficulty": 3
+        },
+        {
+          "id": "q60",
+          "french": "C'est tout droit",
+          "dutch": "Het is rechtdoor",
+          "category": "transport",
+          "difficulty": 3
+        },
+        {
+          "id": "q61",
+          "french": "Vous pouvez répéter?",
+          "dutch": "Kunt u het herhalen?",
+          "category": "transport",
+          "difficulty": 3
+        },
+        {
+          "id": "q62",
+          "french": "la capitale",
+          "dutch": "de hoofdstad",
+          "category": "transport",
+          "difficulty": 2
+        },
+        {
+          "id": "q63",
+          "french": "la ville",
+          "dutch": "de stad",
+          "category": "transport",
+          "difficulty": 2
+        },
+        {
+          "id": "q69",
           "french": "en voiture",
           "dutch": "met de auto",
           "category": "transport",
           "difficulty": 3
         },
         {
-          "id": "q29",
+          "id": "q70",
           "french": "en bus",
           "dutch": "met de bus",
           "category": "transport",
           "difficulty": 2
         },
         {
-          "id": "q30",
+          "id": "q71",
           "french": "à vélo",
           "dutch": "op de fiets",
           "category": "transport",
           "difficulty": 2
         },
         {
-          "id": "q31",
+          "id": "q72",
           "french": "à pied",
           "dutch": "lopend",
           "category": "transport",
           "difficulty": 2
         },
         {
-          "id": "q32",
+          "id": "q73",
           "french": "vite",
           "dutch": "snel",
           "category": "transport",
           "difficulty": 1
         },
         {
-          "id": "q33",
+          "id": "q74",
           "french": "cher",
           "dutch": "duur",
           "category": "transport",
           "difficulty": 1
         },
         {
-          "id": "q34",
+          "id": "q75",
           "french": "pratique",
           "dutch": "praktisch, handig",
           "category": "transport",
           "difficulty": 2
         },
         {
-          "id": "q35",
+          "id": "q76",
           "french": "dangereux",
           "dutch": "gevaarlijk",
           "category": "transport",
@@ -609,214 +485,60 @@
       "icon": "⚽",
       "questions": [
         {
-          "id": "q53",
-          "french": "à la piscine",
-          "dutch": "naar het zwembad",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q79",
-          "french": "jouer de la batterie",
-          "dutch": "drummen",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q80",
-          "french": "jouer de la guitare",
-          "dutch": "gitaar spelen",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q81",
-          "french": "jouer du piano",
-          "dutch": "piano spelen",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q82",
-          "french": "jouer de la flute",
-          "dutch": "fluit spelen",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q97",
-          "french": "faire de la natation",
-          "dutch": "zwemmen",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q98",
-          "french": "faire du basket",
-          "dutch": "basketballen",
-          "category": "sports",
-          "difficulty": 2
-        },
-        {
-          "id": "q99",
-          "french": "faire du tennis",
-          "dutch": "tennissen",
-          "category": "sports",
-          "difficulty": 2
-        },
-        {
-          "id": "q100",
-          "french": "faire de la danse",
-          "dutch": "dansen",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q101",
-          "french": "faire du foot",
-          "dutch": "voetballen",
-          "category": "sports",
-          "difficulty": 2
-        },
-        {
-          "id": "q102",
-          "french": "faire du vélo",
-          "dutch": "wielrennen",
-          "category": "sports",
-          "difficulty": 2
-        },
-        {
-          "id": "q103",
-          "french": "gagner",
-          "dutch": "winnen",
-          "category": "sports",
-          "difficulty": 1
-        },
-        {
-          "id": "q104",
-          "french": "rester",
-          "dutch": "blijven",
-          "category": "sports",
-          "difficulty": 1
-        },
-        {
-          "id": "q105",
-          "french": "l'équipe",
-          "dutch": "het team",
-          "category": "sports",
-          "difficulty": 2
-        },
-        {
-          "id": "q106",
-          "french": "le match",
-          "dutch": "de wedstrijd",
-          "category": "sports",
-          "difficulty": 2
-        },
-        {
-          "id": "q107",
-          "french": "la compétition",
-          "dutch": "de competitie",
-          "category": "sports",
-          "difficulty": 2
-        },
-        {
-          "id": "q108",
-          "french": "l'entraînement",
-          "dutch": "de training",
-          "category": "sports",
-          "difficulty": 2
-        },
-        {
-          "id": "q113",
-          "french": "Tu fais du sport?",
-          "dutch": "Sport jij?",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q114",
-          "french": "Oui, je fais de la natation",
-          "dutch": "Ja, ik zwem",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q115",
-          "french": "Je fais du foot deux fois par semaine",
-          "dutch": "Ik voetbal twee keer per week",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q116",
-          "french": "Tu as un match quand?",
-          "dutch": "Wanneer heb je een wedstrijd?",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q117",
-          "french": "J'ai un match le samedi",
-          "dutch": "Ik heb zaterdag een wedstrijd",
-          "category": "sports",
-          "difficulty": 3
-        },
-        {
-          "id": "q124",
-          "french": "faire du foot",
-          "dutch": "voetballen",
-          "category": "sports",
-          "difficulty": 2
-        },
-        {
-          "id": "q150",
+          "id": "q30",
           "french": "je connais",
           "dutch": "ik ken",
           "category": "sports",
           "difficulty": 2
         },
         {
-          "id": "q151",
+          "id": "q31",
           "french": "faire du VTT",
           "dutch": "mountainbiken",
           "category": "sports",
           "difficulty": 2
         },
         {
-          "id": "q152",
+          "id": "q32",
           "french": "faire de l'escalade",
           "dutch": "bergbeklimmen",
           "category": "sports",
           "difficulty": 2
         },
         {
-          "id": "q153",
+          "id": "q33",
           "french": "nager",
           "dutch": "zwemmen",
           "category": "sports",
           "difficulty": 1
         },
         {
-          "id": "q154",
+          "id": "q34",
           "french": "Tu habites où?",
           "dutch": "Waar woon jij?",
           "category": "sports",
           "difficulty": 3
         },
         {
-          "id": "q155",
+          "id": "q35",
           "french": "J'habite à Paris",
           "dutch": "Ik woon in Parijs",
           "category": "sports",
           "difficulty": 3
         },
         {
-          "id": "q156",
+          "id": "q36",
           "french": "C'est une grande ville?",
           "dutch": "Is dat een grote stad?",
           "category": "sports",
           "difficulty": 3
+        },
+        {
+          "id": "q41",
+          "french": "faire du foot",
+          "dutch": "voetballen",
+          "category": "sports",
+          "difficulty": 2
         }
       ]
     },
@@ -826,370 +548,93 @@
       "icon": "⏰",
       "questions": [
         {
-          "id": "q36",
-          "french": "C'est loin?",
-          "dutch": "Is het ver?",
-          "category": "time",
-          "difficulty": 3
-        },
-        {
-          "id": "q37",
-          "french": "Non, c'est à 15 minutes à pied",
-          "dutch": "Nee, het is 15 minuten lopen",
-          "category": "time",
-          "difficulty": 3
-        },
-        {
-          "id": "q38",
-          "french": "Alors, on y va en bus",
-          "dutch": "Dan gaan wij met de bus",
-          "category": "time",
-          "difficulty": 3
-        },
-        {
-          "id": "q55",
-          "french": "On va au cinéma?",
-          "dutch": "Gaan wij naar de bioscoop?",
-          "category": "time",
-          "difficulty": 3
-        },
-        {
-          "id": "q56",
-          "french": "Oui, d'accord",
-          "dutch": "Ja, oké",
-          "category": "time",
-          "difficulty": 2
-        },
-        {
-          "id": "q57",
-          "french": "À quelle heure?",
-          "dutch": "Hoe laat?",
-          "category": "time",
-          "difficulty": 3
-        },
-        {
-          "id": "q58",
-          "french": "À trois heures",
-          "dutch": "Om drie uur",
-          "category": "time",
-          "difficulty": 3
-        },
-        {
-          "id": "q67",
-          "french": "rêver",
-          "dutch": "dromen",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q68",
-          "french": "participer",
-          "dutch": "deelnemen",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q69",
-          "french": "demain",
-          "dutch": "morgen",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q70",
-          "french": "maintenant",
-          "dutch": "nu",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q71",
-          "french": "hier",
-          "dutch": "gisteren",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q72",
-          "french": "aujourd'hui",
-          "dutch": "vandaag",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q73",
-          "french": "ce matin",
-          "dutch": "vanmorgen",
-          "category": "time",
-          "difficulty": 2
-        },
-        {
-          "id": "q74",
-          "french": "cet après-midi",
-          "dutch": "vanmiddag",
-          "category": "time",
-          "difficulty": 2
-        },
-        {
-          "id": "q75",
-          "french": "Qu'est-ce qu'on va faire ce weekend?",
-          "dutch": "Wat gaan wij dit weekend doen?",
-          "category": "time",
-          "difficulty": 3
-        },
-        {
-          "id": "q76",
-          "french": "Je ne sais pas",
-          "dutch": "Ik weet het niet",
-          "category": "time",
-          "difficulty": 3
-        },
-        {
-          "id": "q77",
-          "french": "D'accord",
-          "dutch": "Oké",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q78",
-          "french": "À tout à l'heure!",
-          "dutch": "Tot straks!",
-          "category": "time",
-          "difficulty": 3
-        },
-        {
-          "id": "q87",
+          "id": "q5",
           "french": "la fois",
-          "dutch": "de keer",
+          "dutch": "de maal",
           "category": "time",
           "difficulty": 2
         },
         {
-          "id": "q88",
+          "id": "q6",
           "french": "le jour",
           "dutch": "de dag",
           "category": "time",
           "difficulty": 2
         },
         {
-          "id": "q89",
+          "id": "q7",
           "french": "la semaine",
           "dutch": "de week",
           "category": "time",
           "difficulty": 2
         },
         {
-          "id": "q90",
+          "id": "q8",
           "french": "le mois",
           "dutch": "de maand",
           "category": "time",
           "difficulty": 2
         },
         {
-          "id": "q91",
-          "french": "pendant",
-          "dutch": "tijdens",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q92",
-          "french": "bientôt",
-          "dutch": "gauw",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q93",
-          "french": "encore",
-          "dutch": "nog",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q94",
-          "french": "depuis",
-          "dutch": "sinds",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q95",
-          "french": "Tu joues d'un instrument?",
-          "dutch": "Speel jij een muziekinstrument?",
+          "id": "q77",
+          "french": "en métro",
+          "dutch": "met de metro",
           "category": "time",
           "difficulty": 3
         },
         {
-          "id": "q96",
-          "french": "Oui, je joue de la guitare",
-          "dutch": "Ja, ik speel gitaar",
+          "id": "q78",
+          "french": "C'est loin?",
+          "dutch": "Is het ver?",
           "category": "time",
           "difficulty": 3
         },
         {
-          "id": "q130",
-          "french": "seul(e)",
-          "dutch": "alleen",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q131",
-          "french": "autre",
-          "dutch": "andere",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q132",
-          "french": "jamais",
-          "dutch": "nooit",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q133",
-          "french": "parfait(e)",
-          "dutch": "perfect",
-          "category": "time",
-          "difficulty": 1
-        },
-        {
-          "id": "q134",
-          "french": "Qu'est-ce qu'on va faire?",
-          "dutch": "Wat gaan wij doen?",
+          "id": "q79",
+          "french": "Non, c'est à 15 minutes à pied",
+          "dutch": "Nee, het is 15 minuten lopen",
           "category": "time",
           "difficulty": 3
         },
         {
-          "id": "q135",
-          "french": "On va faire les magasins",
-          "dutch": "Wij gaan winkelen",
+          "id": "q80",
+          "french": "Alors, on y va en bus",
+          "dutch": "Dan gaan wij met de bus",
           "category": "time",
           "difficulty": 3
-        },
-        {
-          "id": "q136",
-          "french": "Et après?",
-          "dutch": "En daarna?",
-          "category": "time",
-          "difficulty": 2
-        },
-        {
-          "id": "q137",
-          "french": "On va manger au McDo",
-          "dutch": "Wij gaan eten bij McDonald's",
-          "category": "time",
-          "difficulty": 3
-        }
-      ]
-    },
-    {
-      "id": "people",
-      "name": "Mensen",
-      "icon": "👥",
-      "questions": [
-        {
-          "id": "q52",
-          "french": "selon",
-          "dutch": "volgens",
-          "category": "people",
-          "difficulty": 1
-        },
-        {
-          "id": "q138",
-          "french": "l'habitant(e)",
-          "dutch": "de inwoner, inwoonster",
-          "category": "people",
-          "difficulty": 2
-        },
-        {
-          "id": "q139",
-          "french": "les gens",
-          "dutch": "de mensen",
-          "category": "people",
-          "difficulty": 2
-        },
-        {
-          "id": "q140",
-          "french": "à la montagne",
-          "dutch": "in de bergen",
-          "category": "people",
-          "difficulty": 3
-        },
-        {
-          "id": "q141",
-          "french": "le soleil",
-          "dutch": "de zon",
-          "category": "people",
-          "difficulty": 2
-        },
-        {
-          "id": "q142",
-          "french": "seulement",
-          "dutch": "alleen maar",
-          "category": "people",
-          "difficulty": 2
-        },
-        {
-          "id": "q143",
-          "french": "tout",
-          "dutch": "alles",
-          "category": "people",
-          "difficulty": 1
-        },
-        {
-          "id": "q144",
-          "french": "rien du tout",
-          "dutch": "helemaal niets",
-          "category": "people",
-          "difficulty": 3
-        },
-        {
-          "id": "q145",
-          "french": "trop de",
-          "dutch": "te, te veel",
-          "category": "people",
-          "difficulty": 2
         }
       ]
     }
   ],
-  "generatedAt": "2025-05-29T21:29:46.712Z",
-  "sourceFile": "french_dutch_vocabulary_extract.md",
+  "generatedAt": "2025-05-31T06:50:00.068Z",
+  "sourceFile": "french_dutch_workbook.md",
   "stats": {
-    "totalQuestions": 158,
-    "totalCategories": 7,
+    "totalQuestions": 80,
+    "totalCategories": 6,
     "questionsByCategory": [
       {
         "category": "Grammatica",
-        "count": 45
+        "count": 9
       },
       {
         "category": "Dagelijkse Activiteiten",
-        "count": 12
+        "count": 4
       },
       {
         "category": "Plaatsen",
-        "count": 17
-      },
-      {
-        "category": "Vervoer",
-        "count": 8
-      },
-      {
-        "category": "Sport",
         "count": 30
       },
       {
-        "category": "Tijd",
-        "count": 37
+        "category": "Vervoer",
+        "count": 21
       },
       {
-        "category": "Mensen",
-        "count": 9
+        "category": "Sport",
+        "count": 8
+      },
+      {
+        "category": "Tijd",
+        "count": 8
       }
     ]
   }

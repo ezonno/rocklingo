@@ -36,7 +36,7 @@ export class StorageService {
 
   static getSettings(): Settings {
     const data = localStorage.getItem(STORAGE_KEYS.SETTINGS);
-    return data ? JSON.parse(data) : {
+    const defaultSettings = {
       sessionDuration: 15,
       questionTypes: {
         multipleChoice: true,
@@ -44,8 +44,23 @@ export class StorageService {
         spelling: true,
         matching: true,
       },
-      difficulty: 'medium',
+      difficulty: 'medium' as const,
+      accentKeypad: {
+        enabled: true,
+        defaultVisible: 'auto' as const,
+        position: 'auto' as const,
+      },
     };
+    
+    if (!data) return defaultSettings;
+    
+    const savedSettings = JSON.parse(data);
+    // Ensure accentKeypad exists for backward compatibility
+    if (!savedSettings.accentKeypad) {
+      savedSettings.accentKeypad = defaultSettings.accentKeypad;
+    }
+    
+    return savedSettings;
   }
 
   static setSettings(settings: Settings): void {

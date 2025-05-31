@@ -23,6 +23,11 @@ export interface Settings {
     matching: boolean;
   };
   difficulty: 'easy' | 'medium' | 'hard';
+  accentKeypad?: {
+    enabled: boolean;
+    defaultVisible: 'always' | 'never' | 'auto';
+    position?: 'bottom' | 'top' | 'auto';
+  };
 }
 
 export interface Question {
